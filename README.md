@@ -4,8 +4,10 @@ Work on building a basic instrumentation tool for portable signal measurements u
 # Links
 GUI Composer Tool
 https://dev.ti.com/gc/
+
 GUI Composer Guide
 https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/overview.html
+
 TI Innovator Hub
 https://education.ti.com/en/products/micro-controller/ti-innovator
 
