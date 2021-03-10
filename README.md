@@ -18,6 +18,9 @@ https://education.ti.com/en/products/micro-controller/ti-innovator
 Demos to test if LaunchPad works:
 https://dev.ti.com/gallery/view/demos/button_MSP432R_Demo/ver/1.0.0/
 
+Icons for the GUI Composer:
+https://dev.ti.com/gc/components/ti-core-icons/demo/index.html
+
 # Things to do
 ~~Familiarize with GUI Composer Tool
 The target hardware for the GUI is a microcontroller board from TI called MSP432 LaunchPad (Part number MSP-EXP432P401R). This same hardware is used in the product called TI-Innovator Hub. In the beginning of the project we will use the LaunchPad for practice and then try to get the GUI running on the TI-Innovator Hub after the features have been finalized.
