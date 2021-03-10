@@ -67,4 +67,14 @@ It is going to be safest to start with GUI composer because the drivers already 
  
 The software team is going to focus on the GUI development. Starting with TI GUI Composer, you will showcase a proof of concept. Next you will determine if sticking with GUI Composer is going to be the viable option or if other options are necessary to complete the GUI. You will proceed to improve the GUI demo to meet the project objectives and interface with the TI-Innovator Hub.
  
+ 
+# Target Programming
+https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/targetprog.html
+
+# Binding a widget to a data source
+https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/components.html
+1. Click on graph
+2. click on the chain next to the values
+3. Select input source???
+
 
