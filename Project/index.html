@@ -39,13 +39,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <script> if (typeof nw != 'undefined') {window.$ti_nw_main_window = true;} </script>
     <script src="components/ti-core-assets/scripts/gcDesktop.js"></script>
     <link rel="import" href="components/ti-core-databind/ti-core-databind.html">
-    <script src="app/customCodec_0.js"></script>
-    <script src="app/customCodec_1.js"></script>
-    <link rel="stylesheet" href="app/newfile_0.css">
-    <script src="app/newfile_0.js"></script>
-    <link rel="stylesheet" href="app/newfile_1.css">
-    <script src="app/newfile_1.js"></script>
-    <script src="app/newfile_2.js"></script>
+    
     <style>
         body,
         html {
@@ -88,6 +82,8 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <link rel="import" href="components/ti-widget-common/ti-widget-vtabcontainer.html">
 <link rel="import" href="components/ti-widget-common/ti-widget-tab.html">
 <link rel="import" href="components/ti-widget-graphs/ti-widget-linegraph.html">
+<link rel="import" href="components/ti-tile-wizard/ti-tile-meter.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-slider.html">
 
  
 
@@ -144,7 +140,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         }
         #ti_widget_vtabcontainer {
             width:4.896in;
-            height:3.23in;
+            height:3.199in;
             border:1px solid lightgrey;
             background-color: #ffffff;
         }
@@ -205,15 +201,22 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             left: 22px;
             top: 82px;
         }
-        #ti_widget_linegraph4 {
-            width:380px;
-            height:180px;
-            position: absolute;
-            left: 18px;
-            top: 84px;
-        }
         #viewport {
             background-color: #ffffff
+        }
+        #ti_tile_meter {
+            width:236px;
+            height:214px;
+            border:solid 1px lightgray;
+            position: absolute;
+            left: 84px;
+            top: 65px;
+        }
+        #ti_widget_slider {
+            width:255px;
+            position: absolute;
+            left: 84px;
+            top: 261px;
         }
     </style>
      <ti-core-stylesheets id="ti_core_stylesheets"></ti-core-stylesheets>
@@ -221,25 +224,26 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <ti-widget-container auto-scroll id="viewport" layout horizontal wrap start-justified start pin class="viewport">
           <ti-widget-vtabcontainer id="ti_widget_vtabcontainer" selected-label="Voltmeter" background-color-selected="#e0f8f8" color-selected="#000" layout selected-index="5">
               <ti-widget-vtab id="ti_widget_vtab" name="one" icon="settings"></ti-widget-vtab>
-              <ti-widget-vtab id="ti_widget_vtab1" name="Oscilloscope" icon="image:looks-one">
+              <ti-widget-vtab id="ti_widget_vtab1" name="Oscilloscope" icon="ti-core-icons:keypad-o">
                   <ti-widget-banner id="ti_widget_banner4" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
                   <ti-widget-linegraph id="ti_widget_linegraph" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
               </ti-widget-vtab>
-              <ti-widget-vtab id="ti_widget_vtab2" name="Logic Analyzer" icon-name="build" autoscroll icon="image:looks-two">
+              <ti-widget-vtab id="ti_widget_vtab2" name="Logic Analyzer" icon-name="build" autoscroll icon="ti-core-icons:keypad-l">
                   <ti-widget-banner id="ti_widget_banner" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
                   <ti-widget-linegraph id="ti_widget_linegraph1" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
               </ti-widget-vtab>
-              <ti-widget-vtab id="ti_widget_vtab3" name="Waveform Generator" icon-name="build" autoscroll icon="image:looks-3">
+              <ti-widget-vtab id="ti_widget_vtab3" name="Waveform Generator" icon-name="build" autoscroll icon="ti-core-icons:keypad-w" icon-style="width:30px;height:30px;padding:5px;">
                   <ti-widget-banner id="ti_widget_banner1" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
                   <ti-widget-linegraph id="ti_widget_linegraph2" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+                  <ti-widget-slider id="ti_widget_slider" value="0" labels="0,25,50,75,100"></ti-widget-slider>
               </ti-widget-vtab>
-              <ti-widget-vtab id="ti_widget_vtab4" name="Power Supplies" icon-name="build" autoscroll icon="image:looks-4">
+              <ti-widget-vtab id="ti_widget_vtab4" name="Power Supplies" icon-name="build" autoscroll icon="ti-core-icons:electrical-Pwr" icon-style="width:40px;height:40px;padding:5px;">
                   <ti-widget-banner id="ti_widget_banner2" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
                   <ti-widget-linegraph id="ti_widget_linegraph3" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
               </ti-widget-vtab>
-              <ti-widget-vtab id="ti_widget_vtab5" name="Voltmeter" icon-name="build" autoscroll icon="image:looks-5">
+              <ti-widget-vtab id="ti_widget_vtab5" name="Voltmeter" icon-name="build" autoscroll icon="ti-core-icons:electrical-Volts" icon-style="width:35px;height:35px;padding:5px;">
                   <ti-widget-banner id="ti_widget_banner3" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
-                  <ti-widget-linegraph id="ti_widget_linegraph4" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+                  <ti-tile-meter id="ti_tile_meter" value-font-size="xx-large" title-text="Voltmeter" meter-colors="#00e000,#00e000,#00e000,#a9d70b,#f9c802,#ff0000" units="" min-value="0" max-value="100" value="0"></ti-tile-meter>
               </ti-widget-vtab>
           </ti-widget-vtabcontainer>
         
