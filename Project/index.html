@@ -1,0 +1,275 @@
+<!doctype html>
+<!--
+%COPYRIGHTNOTICE%
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+*   Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+*   Neither the name of Texas Instruments Incorporated nor the names of
+its contributors may be used to endorse or promote products derived
+from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link rel="icon" type="image/png" href="images/gui_icon.png">
+
+    <title>Dashboard Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script> if (typeof nw != 'undefined') {window.$ti_nw_main_window = true;} </script>
+    <script src="components/ti-core-assets/scripts/gcDesktop.js"></script>
+    <link rel="import" href="components/ti-core-databind/ti-core-databind.html">
+    <script src="app/customCodec_0.js"></script>
+    <script src="app/customCodec_1.js"></script>
+    <link rel="stylesheet" href="app/newfile_0.css">
+    <script src="app/newfile_0.js"></script>
+    <link rel="stylesheet" href="app/newfile_1.css">
+    <script src="app/newfile_1.js"></script>
+    <script src="app/newfile_2.js"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            height: 100%;
+            overflow-y: hidden;
+        }
+        
+        design-gist-element-preview {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="sky">
+<div id="loadDiv" style='width:100%; height:100%; z-index: 999999; background-color: #eeeeee; position: absolute;'>
+    <div style="width: 100%; height: 100%; background: url('./images/loading.gif') no-repeat center"></div>
+</div>
+<!-- ------------------------------------------------------------------------------------- -->
+<!--gist-begin-->
+<link rel="import" href="components/ti-widget-readme/ti-widget-readme.html">
+<link rel="import" href="components/ti-core-stylesheets/ti-core-stylesheets.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-container.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-label.html">
+<link rel="import" href="components/ti-tile-wizard/ti-tile-container.html">
+<link rel="import" href="components/ti-tile-wizard/ti-tile-title.html">
+<link rel="import" href="components/ti-widget-statusbar/ti-widget-statusbar.html">
+<link rel="import" href="components/ti-widget-menubar/ti-widget-menuitem.html">
+<link rel="import" href="components/ti-widget-menubar/ti-widget-filemenu.html">
+<link rel="import" href="components/ti-widget-menubar/ti-widget-optionsmenu.html">
+<link rel="import" href="components/ti-widget-menubar/ti-widget-helpmenu.html">
+<link rel="import" href="components/ti-core-databind/ti-core-programloader.html">
+<link rel="import" href="components/ti-core-databind/ti-transport-usb.html">
+<link rel="import" href="components/ti-core-databind/ti-model-program.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-banner.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-vtab.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-vtabcontainer.html">
+<link rel="import" href="components/ti-widget-common/ti-widget-tab.html">
+<link rel="import" href="components/ti-widget-graphs/ti-widget-linegraph.html">
+
+ 
+
+  <template id="template_obj" is="dom-bind">
+    <style is="custom-style">
+      html .viewport {
+        right: 0px;
+        bottom: 28px;
+        left: 0px;
+        top: 45px;
+        position: absolute;
+        border: none;
+        padding: 1em;
+        color: rgb(85, 85, 85);
+        overflow: auto;
+        background-color: rgb(250, 250, 250);
+      }
+      html .viewport > * {
+        padding: 0em;
+        margin: 0.5em;
+        border: none;
+        background-color: rgb(255, 255, 255);
+      }
+      #ti_tile_title_container {
+        width: 100%;
+        height: 45px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        border: none;
+        position: absolute;
+        font-size: xx-large;
+        padding-left: 0px;
+      }
+      #ti_widget_menuitem {
+          position: static;
+          height: 45px;
+          display: inline-block;
+          font-size: medium;
+      }
+      #ti_widget_filemenu {
+          font-size: medium;
+      }
+      #ti-widget-optionsmenu {
+           font-size: medium;
+      }
+        #ti_widget_vtab1 {
+            background-color:#ffffff;
+            width: 430px;
+            height: 330px;
+        }
+        #ti_widget_vtab {
+            background-color:white;
+        }
+        #ti_widget_vtabcontainer {
+            width:4.896in;
+            height:3.23in;
+            border:1px solid lightgrey;
+            background-color: #ffffff;
+        }
+        #ti_widget_vtab2 {
+            background-color:white;
+            margin:2px;
+            width: 416px;
+            height: 308px;
+        }
+        #ti_widget_vtab3 {
+            background-color:white;
+            margin:2px;
+            width: 429px;
+            height: 307px;
+        }
+        #ti_widget_vtab4 {
+            background-color:white;
+            margin:2px;
+            width: 444px;
+            height: 305px;
+        }
+        #ti_widget_vtab5 {
+            background-color:white;
+            margin:2px;
+            width: 426px;
+        }
+        #ti_widget_banner4 {
+            position: absolute;
+            left: -19px;
+            top: 1px
+        }
+        #ti_widget_linegraph {
+            width:380px;
+            height:180px;
+            position: absolute;
+            left: 24px;
+            top: 87px;
+            opacity: 1;
+        }
+        #ti_widget_linegraph1 {
+            width:380px;
+            height:180px;
+            position: absolute;
+            left: 15px;
+            top: 79px;
+        }
+        #ti_widget_linegraph2 {
+            width:380px;
+            height:180px;
+            position: absolute;
+            left: 25px;
+            top: 77px;
+        }
+        #ti_widget_linegraph3 {
+            width:380px;
+            height:180px;
+            position: absolute;
+            left: 22px;
+            top: 82px;
+        }
+        #ti_widget_linegraph4 {
+            width:380px;
+            height:180px;
+            position: absolute;
+            left: 18px;
+            top: 84px;
+        }
+        #viewport {
+            background-color: #ffffff
+        }
+    </style>
+     <ti-core-stylesheets id="ti_core_stylesheets"></ti-core-stylesheets>
+     <ti-widget-readme id="readmeViewer" pin></ti-widget-readme>
+      <ti-widget-container auto-scroll id="viewport" layout horizontal wrap start-justified start pin class="viewport">
+          <ti-widget-vtabcontainer id="ti_widget_vtabcontainer" selected-label="Voltmeter" background-color-selected="#e0f8f8" color-selected="#000" layout selected-index="5">
+              <ti-widget-vtab id="ti_widget_vtab" name="one" icon="settings"></ti-widget-vtab>
+              <ti-widget-vtab id="ti_widget_vtab1" name="Oscilloscope" icon="image:looks-one">
+                  <ti-widget-banner id="ti_widget_banner4" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
+                  <ti-widget-linegraph id="ti_widget_linegraph" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+              </ti-widget-vtab>
+              <ti-widget-vtab id="ti_widget_vtab2" name="Logic Analyzer" icon-name="build" autoscroll icon="image:looks-two">
+                  <ti-widget-banner id="ti_widget_banner" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
+                  <ti-widget-linegraph id="ti_widget_linegraph1" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+              </ti-widget-vtab>
+              <ti-widget-vtab id="ti_widget_vtab3" name="Waveform Generator" icon-name="build" autoscroll icon="image:looks-3">
+                  <ti-widget-banner id="ti_widget_banner1" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
+                  <ti-widget-linegraph id="ti_widget_linegraph2" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+              </ti-widget-vtab>
+              <ti-widget-vtab id="ti_widget_vtab4" name="Power Supplies" icon-name="build" autoscroll icon="image:looks-4">
+                  <ti-widget-banner id="ti_widget_banner2" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
+                  <ti-widget-linegraph id="ti_widget_linegraph3" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+              </ti-widget-vtab>
+              <ti-widget-vtab id="ti_widget_vtab5" name="Voltmeter" icon-name="build" autoscroll icon="image:looks-5">
+                  <ti-widget-banner id="ti_widget_banner3" text-align="left" text-decoration="none" visible horizontal layout center start-justified></ti-widget-banner>
+                  <ti-widget-linegraph id="ti_widget_linegraph4" background-color="#FFFFFF" series_0_color="#00BBCC" series_0_values="0;0.48;0.89;1;0.75;0.24;-0.35;-0.82;-1;-0.83;-0.37;0"></ti-widget-linegraph>
+              </ti-widget-vtab>
+          </ti-widget-vtabcontainer>
+        
+      </ti-widget-container>
+     <ti-tile-title id="ti_tile_title_container" title-text="Dashboard" pin  text-align="center">
+         <ti-widget-menuitem id="ti_widget_menuitem" icon="menu" layout icon-name="menu">
+           <ti-widget-filemenu id="ti_widget_filemenu" load-save-disabled layout></ti-widget-filemenu>
+           <ti-widget-optionsmenu id="ti_widget_optionsmenu" layout></ti-widget-optionsmenu>
+           <ti-widget-helpmenu id="ti_widget_helpmenu" name="Help" layout></ti-widget-helpmenu>
+         </ti-widget-menuitem>
+     </ti-tile-title>
+
+      <ti-widget-statusbar></ti-widget-statusbar>
+      <ti-core-programloader id="ti_core_programloader" hidden device-name="MSP432P401R" connection-id="TIXDS110_Connection" target-program="Blink_msp432_monitor (3).out"></ti-core-programloader>
+      <ti-transport-usb id="ti_transport_usb" hidden default-baud-rate="9600" usb>
+          <ti-model-program id="ti_model_program" hidden programloader-id="ti_core_programloader"></ti-model-program></ti-transport-usb>
+
+  </template><!--gist-end-->
+
+<!-- ------------------------------------------------------------------------------------- -->
+
+<script>
+	// Do not edit this file - it is automatically generated.  Please edit index.js
+	addEventListener('WebComponentsReady', function () {
+        var loadDiv = document.querySelector("#loadDiv")
+        if (loadDiv) {
+			loadDiv.parentNode.removeChild(loadDiv);
+        }
+	});
+</script>
+
+</body>
+</html>
