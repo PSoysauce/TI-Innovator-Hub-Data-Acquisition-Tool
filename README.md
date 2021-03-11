@@ -21,6 +21,9 @@ https://dev.ti.com/gallery/view/demos/button_MSP432R_Demo/ver/1.0.0/
 Icons for the GUI Composer:
 https://dev.ti.com/gc/components/ti-core-icons/demo/index.html
 
+Git Info:
+https://git-scm.com/book/en/v2
+
 # Things to do
 Familiarize with GUI Composer Tool
 The target hardware for the GUI is a microcontroller board from TI called MSP432 LaunchPad (Part number MSP-EXP432P401R). This same hardware is used in the product called TI-Innovator Hub. In the beginning of the project we will use the LaunchPad for practice and then try to get the GUI running on the TI-Innovator Hub after the features have been finalized.
@@ -29,12 +32,6 @@ Read through User Guide and experiment with different GUI components
 Add functionality to the base tutorial
  
 The software team is going to focus on the GUI development. Starting with TI GUI Composer, you will showcase a proof of concept. Next you will determine if sticking with GUI Composer is going to be the viable option or if other options are necessary to complete the GUI. You will proceed to improve the GUI demo to meet the project objectives and interface with the TI-Innovator Hub
-
-Continue to ramp on GUI implementation plan.
- 
-Continue to practice github repo and code sharing procedures for the team to work effectively in distributed environment
-You may want to develop some UML diagrams to keep track of the requirements
-This is one of the best git references, please give a read, you will use these skills your whole career: https://git-scm.com/book/en/v2
  
 Work on GUI skeleton for navigating the five primary functions using tabs or menus
 Oscilloscope, Logic Analyzer, Waveform Generator, Power Supplies, Voltmeter
@@ -62,8 +59,6 @@ Add functionality to the base tutorial
 https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/monitor.html
 https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/xds.html
 It is going to be safest to start with GUI composer because the drivers already work with the target hardware, so figure out ways you might spice it up with importing JS libraries or other frameworks. The alternative is to host the GUI code directly on the device in the case of Wi-Fi connection (Access Point + mini server), but this would be an advanced use case.
- 
- 
  
 The software team is going to focus on the GUI development. Starting with TI GUI Composer, you will showcase a proof of concept. Next you will determine if sticking with GUI Composer is going to be the viable option or if other options are necessary to complete the GUI. You will proceed to improve the GUI demo to meet the project objectives and interface with the TI-Innovator Hub.
  
