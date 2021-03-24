@@ -1,0 +1,51 @@
+body, html {
+    margin: 0px;
+    background-color: #282c39;
+    height:100%;
+    font-family: "Roboto","Franklin Gothic Medium",Tahoma,sans-serif;
+}
+
+.h-20 {
+    height: 20% !important;
+}
+
+.bg-header {
+    background-color: white;
+}
+
+.bg-secondary-header {
+    background-color: #c00;
+    font-size: 14px;
+}
+
+.tab-menu {
+    background-color: #555;
+    font-family: "Roboto","Franklin Gothic Medium",Tahoma,sans-serif;
+    font-size: 14px;
+    display: table;
+    width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.main {
+    background-color: white;
+}
+
+.tab {
+    display: table-cell;
+}
+
+.tab:hover {
+    background-color: #c00;
+}
+
+.tab > a {
+    color: white;
+}
+
+.navbar-brand {
+    padding: 0px;
+    margin: 0px;
+}
