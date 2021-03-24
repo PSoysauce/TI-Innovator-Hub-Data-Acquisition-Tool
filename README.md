@@ -76,3 +76,9 @@ https://dev.ti.com/gc/designer/help/GC_UserGuide_v2/components.html
 3. Select input source???
 
 
+# Serving Webpage from the MSP432 Hardware
+here is the example code of how a webpage can be served up directly from the MSP432 hardware. See how the PrintConfig() and PrintIndex() functions are printing out the client code? So you can use this hard code method to setup the chart.js GUI on the local page and then eventually feed it variable data coming from the hardware or dummy data in the case of this project.
+https://github.com/energia/Energia/blob/master/libraries/SimplelinkWifi/examples/simpleWebServer/simpleWebServer.ino
+https://github.com/energia/Energia/tree/master/libraries/SimplelinkWifi
+
+ 
