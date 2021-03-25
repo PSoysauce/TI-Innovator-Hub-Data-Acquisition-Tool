@@ -39,7 +39,7 @@
                                     type: 'line',
                                     data: {
                                         datasets: [{
-                                            label: "Voltage",
+                                            label: "",
                                             data: [(0, 0), (1, .25), (0, .5), (1, .75), (0, 1)],
                                             steppedLine: true,
                                         }]
@@ -63,32 +63,49 @@
                                 </div>
                                 <div class="row m-0">
                                     <div class="col-md-12 border border-secondary">
-                                        <h5> Frequency: </h5>
-                                        <h5> Period: </h5>
-                                        <h5> Duty Cycle: </h5>
-                                        <h5> Rise Time: </h5>
-                                        <h5> Fall Time: </h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 h-100">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h3 class="text-center"> Voltage Characteristics </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h5> Amplitude: </h5>
-                                        <h5> Maximum Voltage: </h5>
-                                        <h5> Minimum Voltage: </h5>
-                                        <h5> Median Voltage: </h5>
-                                        <h5> Mean Voltage: </h5>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</button>
+                                              <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#square">Square</a>
+                                                <a class="dropdown-item" href="#sine">Sine</a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Amplitude</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Offset</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Symmetry</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Phase</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"
                     </div>
                 </div>
             </div>
