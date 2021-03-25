@@ -82,3 +82,5 @@ https://github.com/energia/Energia/blob/master/libraries/SimplelinkWifi/examples
 https://github.com/energia/Energia/tree/master/libraries/SimplelinkWifi
 
  
+# Chart.js Live 
+https://nagix.github.io/chartjs-plugin-streaming/
