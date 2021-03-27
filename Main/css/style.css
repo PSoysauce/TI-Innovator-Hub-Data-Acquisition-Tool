@@ -54,11 +54,6 @@ body, html {
     margin: 0px;
 }
 
-#active {
-    /* border-bottom: 3px solid rgb (204,0,0); */
-    background-color: 3px solid rgb (204,0,0);
-}
-
 .img-responsive {
     height: auto;
     width: auto;
@@ -76,12 +71,7 @@ body, html {
 }
 
 .main-nav li:hover {
-    border-top: 5px solid rgb(204,0,0);
-    /* background-color: rgb(204,0,0); */
-}
-
-.main-nav li .active:hover {
-    border-top: 1px solid white(204,0,0);
+    border-bottom:  5px solid rgb(204,0,0);
 }
 
 .main-nav li:first-child {
@@ -99,7 +89,7 @@ body, html {
 }
 
 .active { /*Whichever html page the user is currently on the navbar will appear this color*/
-    border-bottom: 3px solid rgb(204,0,0);
+    background: rgb(204,0,0);
 }
 
 .logo {
