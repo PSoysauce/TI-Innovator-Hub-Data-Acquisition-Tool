@@ -56,7 +56,7 @@ body, html {
 
 #active {
     /* border-bottom: 3px solid rgb (204,0,0); */
-    background-color: 3px solid rgb (204,0,0);
+    background-color: 3px solid #c00;
 }
 
 .img-responsive {
@@ -76,12 +76,12 @@ body, html {
 }
 
 .main-nav li:hover {
-    border-top: 5px solid rgb(204,0,0);
+    border-top: 5px solid #c00;
     /* background-color: rgb(204,0,0); */
 }
 
 .main-nav li .active:hover {
-    border-top: 1px solid white(204,0,0);
+    border-top: 1px solid #c00;
 }
 
 .main-nav li:first-child {
@@ -99,7 +99,7 @@ body, html {
 }
 
 .active { /*Whichever html page the user is currently on the navbar will appear this color*/
-    border-bottom: 3px solid rgb(204,0,0);
+    border-bottom: 3px solid #c00;
 }
 
 .logo {
@@ -118,7 +118,21 @@ body, html {
     width: 29.16666667%;
 }
 
+.btn-border {
+    border: #c00 1px solid !important;
+}
+
 .btn-settings {
     color: white;
     background-color: #c00;
+    border-radius: 0 !important;
+    border: none;
+}
+
+.btn-settings:hover {
+    background-color: #640000;
+}
+
+.btn-settings:focus {
+    border: #c00 1px solid !important;
 }
