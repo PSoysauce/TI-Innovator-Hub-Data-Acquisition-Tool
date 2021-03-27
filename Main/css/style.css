@@ -1,6 +1,6 @@
 body, html {
     margin: 0px;
-    /* background-color: #282c39; */
+    background-color: #282c39;
     height:100%;
     font-family: "Roboto","Franklin Gothic Medium",Tahoma,sans-serif;
 }
@@ -16,6 +16,10 @@ body, html {
 .bg-secondary-header {
     background-color: #c00;
     font-size: 14px;
+}
+
+.bg-dark-custom {
+    background-color: #282c39;
 }
 
 .tab-menu {
@@ -64,6 +68,7 @@ body, html {
 
 .main-nav {
     display:flex;
+    background-color: white;
 }
 
 .main-nav li {
@@ -107,4 +112,13 @@ body, html {
     width: auto;
     max-height: 30px;
     max-width: 250px;
+}
+
+.col-md-3-5 {
+    width: 29.16666667%;
+}
+
+.btn-settings {
+    color: white;
+    background-color: #c00;
 }
