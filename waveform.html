@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
- - amplitude / 2<head>
+<head>
     <meta charset="UTF-8">
     <title> TI Data Hub </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/moment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.7"></script>
     <script type="text/javascript" src="js/chartjs-plugin-streaming.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -35,16 +37,15 @@
                     <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
                         <div class="row">
                             <div class="col-md-12">
-                                <canvas id="idealChart" class="w-100 border border-secondary"></canvas>
-                                <script>
-                                </script>
+                                <canvas id="idealChart" class=""></canvas>
+                                <button type="button" class="btn btn-primary" onclick="resetZoom()">Reset Zoom</button>
                             </div>
                         </div>
                         <div>
                             <form id="settings-form">
                                 <div class="row m-0">
                                     <div class="col-md-12 border border-secondary">
-                                        <h3 class="text-center"> Timing Characteristics </h1>
+                                        <h3 class="text-center"> Waveform Characteristics </h1>
                                     </div>
                                 </div>
                                 <div class="row m-0">
@@ -64,24 +65,28 @@
                                               <span class="input-group-text">Frequency (Hz)</span>
                                             </div>
                                             <input type="text" id="freq-input" class="form-control" aria-label="Small" aria-describedby="freq-input" value="2">
+                                            <input type="range" class="form-range" min="1" max="512" step="1" value="1" id="freq-range">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
                                               <span class="input-group-text">DAC Frequency (Hz)</span>
                                             </div>
                                             <input type="text" id="dac-freq-input" class="form-control" aria-label="Small" aria-describedby="dac-freq-input" value="1024">
+                                            <input type="range" class="form-range" min="1" max="8192" step="1" value="1024" id="dac-freq-range">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
                                               <span class="input-group-text">Amplitude (V)</span>
                                             </div>
                                             <input type="text" id="amplitude-input" class="form-control" aria-label="Small" aria-describedby="amplitude-input" value="1">
+                                            <input type="range" class="form-range" min="0.1" max="12" step="0.1" value="1" id="amplitude-range">
                                         </div>
                                         <div class="input-group input-group-sm mb-3">
                                             <div class="input-group-prepend">
                                               <span class="input-group-text">Bias (V)</span>
                                             </div>
                                             <input type="text" id="bias-input" class="form-control" aria-label="Small" aria-describedby="amplitude-input" value="0.5">
+                                            <input type="range" class="form-range" min="-12" max="12" step="0.1" value="0.5" id="bias-range">
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +118,7 @@
         }(jQuery));
 
         $("#settings-form input").inputFilter(function(value) {
-            return /^\d*\.{0,1}\d*$/.test(value);            
+            return /^-{0,1}\d*\.{0,1}\d*$/.test(value);            
         });
 
         var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
@@ -129,9 +134,21 @@
                 }]
             },
             options: {
+                plugins: {
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                            mode: 'x'
+                        },
+                        zoom: {
+                            enabled: true,
+                            mode: 'x'
+                        }
+					}
+                },
                 title: {
                     display: true,
-                    text: 'Ideal generated signal'
+                    text: 'Theoretical Waveform'
                 },
                 scales: {
                     yAxes: [{
@@ -170,10 +187,10 @@
         var freq, amplitude, dacFreq, type, bias;
         function updateVars() {
             freq = parseFloat($("#freq-input").val());
-            freq = freq == 0 ? 0.01 : freq;
+            freq = freq <= 0 ? 0.01 : freq;
             amplitude = parseFloat($("#amplitude-input").val());
             dacFreq = parseFloat($("#dac-freq-input").val());
-            dacFreq = dacFreq == 0 ? 0.01 : dacFreq;
+            dacFreq = dacFreq <= 0 ? 0.01 : dacFreq;
             type = $("#settings-form option:selected").index();
             bias = parseFloat($("#bias-input").val());
         }
@@ -237,7 +254,7 @@
 
             chart.data.datasets[0].data = [];
             cycleIndex = 0;
-            length = freq >= 1 ? dacFreq : sampleLength;
+            length = Math.floor(freq) == freq ? dacFreq : sampleLength;
             while (chart.data.datasets[0].data.length <= length) {
                 for (i = 0; i < sampleLength; i++) {
                     chart.data.datasets[0].data.push({x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i])});
@@ -251,6 +268,12 @@
         }
 
         $("#settings-form :input").change(function() {
+            if (this.id.includes("range")) {
+                $("#" + this.id.substring(0, this.id.indexOf("range")) + "input").val(this.value);
+            } else if (this.id.includes("input")) {
+                $("#" + this.id.substring(0, this.id.indexOf("input")) + "range").val(this.value);
+            }
+
             updateVars();
             setIdealChart();
         });
@@ -259,5 +282,9 @@
             updateVars();
             setIdealChart();
         });
+
+        function resetZoom() {
+            chart.resetZoom();
+        }
     </script>    
 </body>
