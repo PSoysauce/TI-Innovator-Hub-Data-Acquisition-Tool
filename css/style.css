@@ -137,3 +137,7 @@ body, html {
 .btn-settings:focus {
     border: #c00 1px solid !important;
 }
+
+#settings-form {
+    margin-top: 5%;
+}
