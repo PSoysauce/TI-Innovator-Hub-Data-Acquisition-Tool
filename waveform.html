@@ -93,101 +93,101 @@
         </div>
     </div>
 
-	<script>
-		// FROM https://stackoverflow.com/a/995193/4352298
-		(function($) {
-		  $.fn.inputFilter = function(inputFilter) {
-			return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-			  if (inputFilter(this.value)) {
-				this.oldValue = this.value;
-				this.oldSelectionStart = this.selectionStart;
-				this.oldSelectionEnd = this.selectionEnd;
-			  } else if (this.hasOwnProperty("oldValue")) {
-				this.value = this.oldValue;
-				this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-			  } else {
-				this.value = "";
-			  }
-			});
-		  };
-		}(jQuery));
+    <script>
+        // FROM https://stackoverflow.com/a/995193/4352298
+        (function($) {
+          $.fn.inputFilter = function(inputFilter) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+              if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+              } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+              } else {
+                this.value = "";
+              }
+            });
+          };
+        }(jQuery));
 
-		$("#settings-form input").inputFilter(function(value) {
-			return /^\d*\.{0,1}\d*$/.test(value);			
-		});
+        $("#settings-form input").inputFilter(function(value) {
+            return /^\d*\.{0,1}\d*$/.test(value);            
+        });
 
-		var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
-			type: 'line',
-			data: {
-				datasets: [{
-					pointStyle: 'line',
-					label: "Ideal voltage",
-					data: [],
-					steppedLine: true,
-					fill: false,
-					borderColor: 'rgb(14, 173, 105)',
-				}]
-			},
-			options: {
-				title: {
-					display: true,
-					text: 'Ideal generated signal'
-				},
-				scales: {
-					yAxes: [{
-						gridLines: {
-							drawOnChartArea: false,
-						},
-						ticks: {
-							beginAtZero: true,
+        var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
+            type: 'line',
+            data: {
+                datasets: [{
+                    pointStyle: 'line',
+                    label: "Ideal voltage",
+                    data: [],
+                    steppedLine: true,
+                    fill: false,
+                    borderColor: 'rgb(14, 173, 105)',
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Ideal generated signal'
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
                             callback: function(value, index, values) {
                                 return value + ' V';
                             }
-						},
+                        },
                         scaleLabel: {
                             display: true,
                             labelString: 'Voltage'
                         },
-						type: 'linear'
-					}],
-					xAxes: [{
-						ticks: {
-							beginAtZero: true,
+                        type: 'linear'
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
                             callback: function(value, index, values) {
                                 return value + 's';
                             }
-						},
+                        },
                         scaleLabel: {
                             display: true,
                             labelString: 'Time'
                         },
-						type: 'linear'
-					}]
-				}
-			}
-		});
+                        type: 'linear'
+                    }]
+                }
+            }
+        });
 
-		var freq, amplitude, dacFreq, type, bias;
-		function updateVars() {
-			freq = parseFloat($("#freq-input").val());
+        var freq, amplitude, dacFreq, type, bias;
+        function updateVars() {
+            freq = parseFloat($("#freq-input").val());
             freq = freq == 0 ? 0.01 : freq;
-			amplitude = parseFloat($("#amplitude-input").val());
-			dacFreq = parseFloat($("#dac-freq-input").val());
+            amplitude = parseFloat($("#amplitude-input").val());
+            dacFreq = parseFloat($("#dac-freq-input").val());
             dacFreq = dacFreq == 0 ? 0.01 : dacFreq;
-			type = $("#settings-form option:selected").index();
-			bias = parseFloat($("#bias-input").val());
-		}
+            type = $("#settings-form option:selected").index();
+            bias = parseFloat($("#bias-input").val());
+        }
 
         function trimNum(num) {
             return Math.round(num * 10 ** 7) / 10 ** 7;
         }
 
-		function setIdealChart() {
-			data = [];
-			var sampleLength = dacFreq > freq ? dacFreq / freq : dacFreq;
-			switch (type) {
-				// Square
-				case 0: 
+        function setIdealChart() {
+            data = [];
+            var sampleLength = dacFreq > freq ? dacFreq / freq : dacFreq;
+            switch (type) {
+                // Square
+                case 0: 
                     if (freq < 1) {
                         sampleLength = dacFreq / freq;
                     }
@@ -202,21 +202,21 @@
                             data.push(bias - amplitude / 2);
                         }
                     }
-					break;
-				// Sine
-				case 1:
-					dx = 2 * Math.PI * freq / dacFreq;
+                    break;
+                // Sine
+                case 1:
+                    dx = 2 * Math.PI * freq / dacFreq;
                     if (freq < 1) {
                         sampleLength = dacFreq / freq;
                         dx = 2 * Math.PI / sampleLength;
                         console.log(sampleLength);
                     }
-					for (i = 0; i < sampleLength; i++) {
-						data.push(amplitude / 2 * Math.sin(i * dx) + bias);
-					}
-					break;
-				// Sawtooth
-				case 2:
+                    for (i = 0; i < sampleLength; i++) {
+                        data.push(amplitude / 2 * Math.sin(i * dx) + bias);
+                    }
+                    break;
+                // Sawtooth
+                case 2:
                     dx = amplitude / freq;
                     if (dacFreq > freq) {
                         sampleLength = dacFreq;
@@ -232,32 +232,32 @@
                         sec -= cycleCount * cycleLength;
                         data.push(sec / cycleLength * amplitude + bias - amplitude / 2);
                     }
-					break;
-			}
+                    break;
+            }
 
-			chart.data.datasets[0].data = [];
-			cycleIndex = 0;
+            chart.data.datasets[0].data = [];
+            cycleIndex = 0;
             length = freq >= 1 ? dacFreq : sampleLength;
-			while (chart.data.datasets[0].data.length <= length) {
-				for (i = 0; i < sampleLength; i++) {
-					chart.data.datasets[0].data.push({x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i])});
+            while (chart.data.datasets[0].data.length <= length) {
+                for (i = 0; i < sampleLength; i++) {
+                    chart.data.datasets[0].data.push({x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i])});
                     if (chart.data.datasets[0].data.length > length) {
                         break;
                     }
-				}
-				cycleIndex++;
-			}
-			chart.update();
-		}
+                }
+                cycleIndex++;
+            }
+            chart.update();
+        }
 
-		$("#settings-form :input").change(function() {
-			updateVars();
-			setIdealChart();
-		});
-		
+        $("#settings-form :input").change(function() {
+            updateVars();
+            setIdealChart();
+        });
+        
         $(document).ready(function() {
             updateVars();
             setIdealChart();
         });
-	</script>	
+    </script>    
 </body>
