@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="UTF-8">
+    <title> TI Data Hub </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script type="text/javascript" src="js/chartjs-plugin-streaming.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<header>
+    <section id="header">
+        <div class="wrapper">
+           <nav>
+             <ul class="main-nav my-0">
+               <li><a href="https://www.ti.com/" class="logo"><img src="images/logo.png" alt="tilogo" class="img-responsive"></a href="https://www.ti.com/"></li>
+               <li><a href="oscilloscope.html">Oscilloscope</a></li>
+               <li><a href="voltmeter.html">Voltmeter</a></li>
+               <li><a href="logic.html"class='active'>Logic Analyzer</a></li>
+               <li><a href="waveform.html">Waveform Generator</a></li>
+               <li><a href="power.html">Power Supply</a></li>
+             </ul>
+           </nav>
+        </div>
+      </section>
+</header>
+<body>
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-md-12"> 
+                <div class="row h-100 main">
+                    <div class="col-md-4 mt-2">
+                        <div class="row" id="timing">
+                            <div class="col-md-12">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Timing Characteristics </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
+                                            </div>
+                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
+                                            </div>
+                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
+                                            </div>
+                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
+                                            </div>
+                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
+                                            </div>
+                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Universal Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Voltage Threshold</span>
+                                            </div>
+                                            <input type="number" step="0.01" class="form-control" placeholder="0">
+                                        </div>
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> No Triggers </option>
+                                                <option> Triggers ORed </option>
+                                                <option> Triggers ANDed </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings1">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 1 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings2">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 2 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings3">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 3 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings4">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 4 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings5">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 5 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings6">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 6 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                            </div>
+                                            <select class="form-select">
+                                                <option selected> None </option>
+                                                <option> Low (0) </option>
+                                                <option> High (1) </option>
+                                                <option> Rising </option>
+                                                <option> Falling </option>
+                                                <option> Either Edge </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 mt-2 h-100 float-left">
+                        <div class="col-md-12 border border-secondary">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <nav class="navbar w-100 navbar-expand-lg navbar-light bg-light p-0 m-0">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+                                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                            <div class="navbar-nav w-100">
+                                                <div class="col-md-12 text-center">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(1)" id="channelToggle1" class="btn-settings btn-border w-100">1</button>
+                                                        </div>
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(2)" id="channelToggle2" class="btn-settings btn-border w-100">2</button>
+                                                        </div>
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(3)" id="channelToggle3" class="btn-settings btn-border w-100">3</button>
+                                                        </div>
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(4)" id="channelToggle4" class="btn-settings btn-border w-100">4</button>
+                                                        </div>
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(5)" id="channelToggle5" class="btn-settings btn-border w-100">5</button>
+                                                        </div>
+                                                        <div class="col-md-2 p-0">
+                                                            <button onClick="hideChannel(6)" id="channelToggle6" class="btn-settings btn-border w-100">6</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="row p-0 m-0">
+                                <div class="col-md-6 p-0 m-0">
+                                    <canvas id="channelChart1" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                </div>
+                                <div class="col-md-6 bg-primary">
+
+                                </div>
+                                    <canvas id="channelChart2" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart3" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart4" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart5" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart6" class="w-100 bg-dark-custom border border-secondary"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    var activeChannels = 6; // columns
+    
+    var memory = [[]];  // Straight Teeth Katie
+
+    // var memory[channels][[].push()]
+    
+
+    function hideChannel(num) {
+        var channel = document.getElementById("channelChart" + num);
+        var button = document.getElementById("channelToggle" + num);
+        var settings = document.getElementById("channelSettings" + num);
+        //var voltage = document.getElementById("voltage" + num);
+        var timing = document.getElementById("timing");
+        if(channel.style.display == 'none') {
+            button.style.color = 'white';
+            button.style.backgroundColor = '#c00';
+            channel.style.display = 'block';
+            settings.style.display = 'block';
+            //voltage.style.display = 'block';
+            activeChannels++;
+            if(activeChannels != 0) {
+                timing.style.display ='block';
+            }
+        } else {
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            channel.style.display = 'none';
+            settings.style.display = 'none';
+            //voltage.style.display = 'none';
+            activeChannels--;
+            if(activeChannels == 0) {
+                timing.style.display ='none';
+            }
+        }
+    }
+
+    function generateCharts() {
+        for(var i = 1; i <= 6; i++) {
+            var ctx = document.getElementById("channelChart" + i).getContext('2d');
+            var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Voltage',
+                    pointStyle: 'line',
+                    data: [],
+                    steppedLine: true,
+                    fill: false,
+                    borderColor: 'rgb(14, 173, 105)',
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Channel ' + i,
+                    fontColor: 'rgb(255, 255, 255)',
+                },
+                legend: {
+                    labels: {
+                        defaultFontFamily:  "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
+                        fontColor: 'rgb(255, 255, 255)',
+                    }
+                },
+                color: 'rgb(255, 255, 255)',
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            fontColor: 'rgb(255, 255, 255)',
+                        },
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            fontColor: 'rgb(255, 255, 255)',
+                        },
+                        type: 'realtime',
+                        realtime: {
+                            onRefresh: function(chart) {
+                                chart.data.datasets.forEach(function(dataset) {
+                                    dataset.data.push({
+                                        x: Date.now(),
+                                        y: Math.random(),
+                                    });
+                                });
+                            },
+                            delay: 2000,
+                        }
+                    }]
+                },
+            }});
+        }
+    }
+
+    generateCharts();
+
+    var frequency = 0;
+
+    function generateData() {
+        var ran = Math.random();
+        return Math.random()
+    }
+</script>
