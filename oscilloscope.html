@@ -35,24 +35,69 @@
                     <div class="col-md-9 m-0 p-0 h-100 float-left border border-secondary">
                         <div class="row">
                             <div class="col-md-12">
-                                <canvas id="oscilloscopeChart" class="w-100 border border-secondary"></canvas>
+                                <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border-secondary"></canvas>
                                 <script>
-                                    new Chart(document.getElementById("oscilloscopeChart"), {
+                                    var ctx = document.getElementById('oscilloscopeChart').getContext('2d');
+                                    var chart = new Chart(ctx, {
                                     type: 'line',
                                     data: {
                                         datasets: [{
-                                            label: "Voltage",
-                                            data: [(0, 0), (1, .25), (0, .5), (1, .75), (0, 1)],
-                                            steppedLine: true,
-                                        }]
+                                            label: 'Voltage',
+                                            pointStyle: 'line',
+                                            data: [],
+                                            steppedLine: false,
+                                            fill: false,
+                                            borderColor: 'rgb(14, 173, 105)',
+                                        }],
                                     },
                                     options: {
                                         title: {
-                                        display: true,
-                                        text: 'Oscilloscope'
+                                            display: true,
+                                            text: 'Oscilloscope',
+                                            fontColor: 'rgb(255, 255, 255)',
                                         },
-                                        responsive: false
+                                        legend: {
+                                            labels: {
+                                                defaultFontFamily:  "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
+                                                fontColor: 'rgb(255, 255, 255)',
+                                            }
+                                        },
+                                        color: 'rgb(255, 255, 255)',
+                                        scales: {
+                                            yAxes: [{
+                                                gridLines: {
+                                                    drawOnChartArea: false,
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    fontColor: 'rgb(255, 255, 255)',
+                                                },
+                                            }],
+                                            xAxes: [{
+                                                gridLines: {
+                                                    drawOnChartArea: false,
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    fontColor: 'rgb(255, 255, 255)',
+                                                },
+                                                type: 'realtime',
+                                                realtime: {
+                                                    onRefresh: function(chart) {
+                                                        chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                x: Date.now(),
+                                                                y: Math.random(),
+                                                            });
+                                                        });
+                                                    },
+                                                    delay: 2000,
+                                                }
+                                            }]
+                                        },
                                     }});
+                                
+                                    
                                 </script>
                             </div>
                         </div>
