@@ -70,10 +70,8 @@ body, html {
     list-style: none;
 }
 
-.main-nav li:hover {
-    /* border-bottom: 1px solid #c00; */
+.main-nav li.nav:hover {
     border-bottom:  3px solid #c00;
-    /* background-color: rgb(204,0,0); */
 }
 
 .main-nav li:first-child {
@@ -89,8 +87,9 @@ body, html {
     text-transform: uppercase;
 }
 
-.active { /*Whichever html page the user is currently on the navbar will appear this color*/
-    border-bottom: 3px solid #c00;
+li.nav .active { /*Whichever html page the user is currently on the navbar will appear this color*/
+    background: #c00;
+    color: white;
 }
 
 .logo {
