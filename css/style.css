@@ -54,11 +54,6 @@ body, html {
     margin: 0px;
 }
 
-#active {
-    /* border-bottom: 3px solid rgb (204,0,0); */
-    background-color: 3px solid #c00;
-}
-
 .img-responsive {
     height: auto;
     width: auto;
@@ -76,13 +71,9 @@ body, html {
 }
 
 .main-nav li:hover {
-    border-top: 5px solid #c00;
+    /* border-bottom: 1px solid #c00; */
+    border-bottom:  3px solid #c00;
     /* background-color: rgb(204,0,0); */
-}
-
-.main-nav li .active:hover {
-    border-top: 1px solid #c00;
-    border-bottom:  5px solid #c00;
 }
 
 .main-nav li:first-child {
@@ -91,7 +82,6 @@ body, html {
 
 .main-nav li a {
     color: black;
-    border-radius: 4px;
     display: block;
     padding: 15px 30px;
     text-decoration: none;
@@ -105,7 +95,6 @@ body, html {
 
 .logo {
     margin-right: auto;
-
 }
 
 .img-responsive {
