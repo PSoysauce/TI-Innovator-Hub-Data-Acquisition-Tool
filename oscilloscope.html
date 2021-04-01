@@ -71,6 +71,8 @@
                                                 ticks: {
                                                     beginAtZero: true,
                                                     fontColor: 'rgb(255, 255, 255)',
+                                                    min: -1,
+                                                    max: 1
                                                 },
                                             }],
                                             xAxes: [{
@@ -87,7 +89,7 @@
                                                         chart.data.datasets.forEach(function(dataset) {
                                                             dataset.data.push({
                                                                 x: Date.now(),
-                                                                y: Math.random(),
+                                                                y: plotSine(),
                                                             });
                                                         });
                                                     },
@@ -96,8 +98,24 @@
                                             }]
                                         },
                                     }});
-                                
-                                    
+                                    var x = 1;
+                                    function plotSine() {
+                                        var y = 0;
+                                        var amplitude = 1;
+                                        var frequency = 1;
+                                        
+                                        y = amplitude * Math.sin(x/frequency);
+                                        switchX();
+                                        return y;
+                                    }
+
+                                    function switchX() {
+                                        if(x == 1){
+                                            x = -1;
+                                        } else {
+                                            x = 1;
+                                        }
+                                    }
                                 </script>
                             </div>
                         </div>
