@@ -99,16 +99,14 @@
                                         },
                                     }});
                                     var x = 1;
+                                    var frequency = 1;
+                                    var amplitude = 1;
+                                    // funciton plotSine will calculate the y value for the sine curve
                                     function plotSine() {
-                                        var y = 0;
-                                        var amplitude = 1;
-                                        var frequency = 1;
-                                        
-                                        y = amplitude * Math.sin(x/frequency);
                                         switchX();
-                                        return y;
+                                        return amplitude * Math.sin(x/frequency);
                                     }
-
+                                    // function switchX will osillate between -1 and 1
                                     function switchX() {
                                         if(x == 1){
                                             x = -1;
