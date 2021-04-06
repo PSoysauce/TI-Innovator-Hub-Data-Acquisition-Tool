@@ -34,11 +34,10 @@
             <div class="row h-100">
                 <div class="col-md-12"> 
                     <div class="row h-100 main">
-                        <div class="col-md-9 m-0 p-0 h-100 float-left border border-secondary">
+                        <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border-secondary"></canvas>
-                                    
+                                    <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border border-secondary"></canvas>
                                 </div>
                             </div>
                             <form id="settings-form">
@@ -228,7 +227,7 @@
                         fontColor: 'rgb(255, 255, 255)',
                         beginAtZero: true,
                         callback: function(value, index, values) {
-                            return value + 's';
+                            return value;
                         }
                     },
                     type: 'realtime',
@@ -262,6 +261,16 @@
             frequency = frequency <= 0 ? 0.01 : frequency;
             amplitude = parseFloat($("#amplitude-input").val());
 
+        }
+
+        function onReceive(event) {
+            window.oscilloscopeChart.config.data.datasets[event.index].data.push({
+                x: event.timestamp,
+                y: event.value
+            });
+            window.oscilloscopeChart.update({
+                preservation: true
+            });
         }
 
         // funciton plotSine will calculate the y value for the sine curve
