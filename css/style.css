@@ -129,3 +129,7 @@ li.nav .active { /*Whichever html page the user is currently on the navbar will 
 #settings-form {
     margin-top: 5%;
 }
+
+.form-range::-webkit-slider-thumb {
+    background: #c00;
+}
