@@ -56,7 +56,7 @@
                                                         <div class="input-group-prepend">
                                                         <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
                                                         </div>
-                                                        <input type="text" id="freq-input" class="form-control" aria-label="Small" aria-describedby="freq-input" value="2">
+                                                        <input type="text" id="freq-input" class="form-control" aria-label="Small" aria-describedby="freq-input" value="1">
                                                         <input type="range" class="form-range" min="1" max="512" step="1" value="1" id="freq-range">
                                                     </div>
                                                     <div class="input-group input-group-sm mb-3">
@@ -241,6 +241,7 @@
                             chart.data.datasets.forEach(function(dataset) {
                                 dataset.data.push({
                                     x: Date.now(),
+                                    
                                     y: plotSine(),
                                 });
                             });
@@ -253,19 +254,7 @@
         var x = 1;
         var frequency = 1;
         var amplitude = 1;
-
-        // const allRanges = document.querySelectorAll("#settings-form");
-        // allRanges.forEach(wrap => {
-        //     const range = wrap.querySelector("#form-range");
-
-        //     range.addEventListener("input", () => {
-        //         setInput(range);
-        //     });
-        // });
-
-        // setInput(range) {
-
-        // }
+        var period = 1 / frequency;
 
         function updateVars() {
             frequency = parseFloat($("#freq-input").val());
@@ -275,35 +264,10 @@
 
         }
 
-        function setIdealChart() {
-                data = [];
-                data.push(amplitude * Math.sin())
-                        for (i = 0; i < sampleLength; i++) {
-                            data.push(amplitude / 2 * Math.sin(i * dx) + bias);
-                        }
-                        
-                chart.data.datasets[0].data = [];
-                cycleIndex = 0;
-                length = Math.floor(freq) == freq ? dacFreq : sampleLength;
-                while (chart.data.datasets[0].data.length <= length) {
-                    for (i = 0; i < sampleLength; i++) {
-                        chart.data.datasets[0].data.push({x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i])});
-                        if (chart.data.datasets[0].data.length > length) {
-                            break;
-                        }
-                    }
-                    cycleIndex++;
-                }
-                chart.update();
-            }
-
-
         // funciton plotSine will calculate the y value for the sine curve
         function plotSine() {
-            data = [];
             switchX();
             return amplitude * Math.sin(x/frequency);
-            // data.push(amplitude * Math.sin(x/frequency));
         }
         // function switchX will osillate between -1 and 1
         function switchX() {
@@ -322,11 +286,4 @@
             }
             updateVars();
         });
-
-        // $(document).ready(function() {
-        //         updateVars();
-        //         plotSine();
-        //         // setIdealChart();
-        // });
-
     </script>
