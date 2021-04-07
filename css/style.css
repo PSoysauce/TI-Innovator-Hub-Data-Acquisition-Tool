@@ -133,3 +133,7 @@ li.nav .active { /*Whichever html page the user is currently on the navbar will 
 .form-range::-webkit-slider-thumb {
     background: #c00;
 }
+
+.btn {
+    background: #c00;
+}
