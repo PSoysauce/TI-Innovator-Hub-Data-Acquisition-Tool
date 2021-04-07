@@ -35,24 +35,112 @@
                     <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
                         <div class="row">
                             <div class="col-md-12">
-                                <canvas id="oscilloscopeChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
+                                <canvas id="voltmeterChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
                                 <script>
-                                    new Chart(document.getElementById("oscilloscopeChart"), {
+                                    new Chart(document.getElementById("voltmeterChart"), {
                                     type: 'line',
                                     data: {
                                         datasets: [{
                                             label: "Voltage",
-                                            data: [(0, 0), (1, .25), (0, .5), (1, .75), (0, 1)],
+                                            data: [],
                                             steppedLine: true,
+                                            borderColor: 'rgb(14, 173, 105)'
                                         }]
                                     },
                                     options: {
+                                        plugins: {
+                                            zoom: {
+                                                pan: {
+                                                    enabled: true,
+                                                    mode: 'x'
+                                                },
+                                                zoom: {
+                                                    enabled: true,
+                                                    mode: 'x'
+                                                }
+                                            }
+                                        },
                                         title: {
-                                        display: true,
-                                        text: 'Voltmeter'
+                                            display: true,
+                                            text: 'Voltmeter',
+                                            fontColor: 'rgb(255, 255, 255)',
+                                        },
+                                        legend: {
+                                            labels: {
+                                                defaultFontFamily:  "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
+                                                fontColor: 'rgb(255, 255, 255)',
+                                            }
+                                        },
+                                        color: 'rgb(255, 255, 255)',
+                                        scales: {
+                                            yAxes: [{
+                                                gridLines: {
+                                                    drawOnChartArea: false,
+                                                },
+                                                ticks: {
+                                                    fontColor: 'rgb(255, 255, 255)',
+                                                    beginAtZero: true,
+                                                            callback: function(value, index, values) {
+                                                                return value + ' V';
+                                                            }
+                                                },
+                                                scaleLabel: {
+                                                            display: true,
+                                                            labelString: 'Voltage'
+                                                },
+                                                type: 'linear'
+                                            }],
+                                            xAxes: [{
+                                                gridLines: {
+                                                    drawOnChartArea: false,
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    fontColor: 'rgb(255, 255, 255)',
+                                                    beginAtZero: true,
+                                                    callback: function(value, index, values) {
+                                                        return value;
+                                                    }
+                                                },
+                                                type: 'realtime',
+                                                scaleLabel: {
+                                                    display: true,
+                                                    labelString: 'Time'
+                                                },
+                                                realtime: {
+                                                    onRefresh: function(chart) {
+                                                        chart.data.datasets.forEach(function(dataset) {
+                                                            dataset.data.push({
+                                                                x: Date.now(),
+                                                                y: getData()
+                                                            });
+                                                        });
+                                                    },
+                                                    delay: 2000,
+                                                }
+                                            }]
                                         },
                                         responsive: false
                                     }});
+                                    
+                                    var display_data = false;
+
+                                    // random function to generate data between 0 and 10 V
+                                    function getData() {
+                                        if(display_data)
+                                            return Math.floor(Math.random() * 11);
+                                    }
+
+                                    // toggle the data on
+                                    function onData() {
+                                        display_data = true;
+                                    }
+
+                                    // toggle the data off
+                                    function offData() {
+                                        display_data = false;
+                                    }
+
                                 </script>
                             </div>
                         </div>
@@ -65,32 +153,8 @@
                                 </div>
                                 <div class="row m-0">
                                     <div class="col-md-12 border border-secondary">
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                              <span class="input-group-text" id="inputGroup-sizing-sm">DC</span>
-                                            </div>
-                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                              <span class="input-group-text" id="inputGroup-sizing-sm">True RMS</span>
-                                            </div>
-                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                        <div class="input-group input-group-sm mb-3">
-                                            <div class="input-group-prepend">
-                                              <span class="input-group-text" id="inputGroup-sizing-sm">AC RMS</span>
-                                            </div>
-                                            <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                        </div>
-                                        <div class="row m-0">
-                                            <div class="col-md-12 border border-secondary">
-                                                <label for="customRange1" class="form-label">Voltage</label>
-                                                <input type="range" min="1" max="100" value="1" class="form-range" id="customRange1">
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary">Enable Power Supply</button>
-                                        <button type="button" class="btn btn-primary">Disable Power Supply</button>
+                                        <button type="button" class="btn btn-primary" onclick="onData()">Enable Voltmeter</button>
+                                        <button type="button" class="btn btn-primary" onclick="offData()">Disable Voltmeter</button>
                                     </div>
                                 </div>
                             </div>
