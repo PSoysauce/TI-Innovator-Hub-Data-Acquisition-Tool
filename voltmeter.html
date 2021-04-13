@@ -34,6 +34,7 @@
                 <div class="row h-100 main">
                     <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
                         <div class="row">
+                            <input readonly id="volt" value="__V" style="height:200px; text-align: center; font-size: 100px;">
                             <div class="col-md-12">
                                 <canvas id="voltmeterChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
                                 <script>
@@ -116,7 +117,7 @@
                                                             });
                                                         });
                                                     },
-                                                    delay: 2000,
+                                                    delay: 1000,
                                                 }
                                             }]
                                         },
@@ -127,8 +128,15 @@
 
                                     // random function to generate data between 0 and 10 V
                                     function getData() {
-                                        if(display_data)
-                                            return Math.floor(Math.random() * 11);
+                                        if(display_data) {
+                                            point = Math.floor(Math.random() * 11);
+                                            setBox();
+                                            return Math.floor(point);
+                                        }
+                                    }
+
+                                    function setBox() {
+                                        $("#volt").val(point + "V");
                                     }
 
                                     // toggle the data on
