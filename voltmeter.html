@@ -38,7 +38,7 @@
                             <div class="col-md-12">
                                 <canvas id="voltmeterChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
                                 <script>
-                                    new Chart(document.getElementById("voltmeterChart"), {
+                                    var voltmeterChart = new Chart(document.getElementById("voltmeterChart"), {
                                     type: 'line',
                                     data: {
                                         datasets: [{
@@ -141,12 +141,18 @@
 
                                     // toggle the data on
                                     function onData() {
+                                        voltmeterChart.options.plugins.streaming.pause = false;
+                                        voltmeterChart.update();
                                         display_data = true;
                                     }
 
                                     // toggle the data off
                                     function offData() {
+                                        
+                                        voltmeterChart.options.plugins.streaming.pause = true;
+                                        voltmeterChart.update();
                                         display_data = false;
+                                        console.log('stop');
                                     }
 
                                 </script>

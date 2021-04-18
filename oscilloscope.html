@@ -40,6 +40,8 @@
                                     <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border border-secondary"></canvas>
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-primary" onclick="onData()">Enable Oscilloscope</button>
+                            <button type="button" class="btn btn-primary" onclick="offData()">Disable Oscilloscope</button>
                             <form id="settings-form">
                                 <div class="row h-25">
                                     <div class="col-md-6 h-100">
@@ -265,9 +267,12 @@
 
         }
 
+        var display_data = true;
+
         // funciton plotSine will calculate the y value for the sine curve
         function plotSine() {
             switchX();
+            if(display_data) {
             y_val = amplitude * Math.sin(x/frequency)
             if(y_val > max_volt) {
                 max_volt = y_val;
@@ -281,6 +286,7 @@
             }
             dataset.push(y_val);
             return y_val;
+            }
         }
 
         function median() {
@@ -346,7 +352,19 @@
             timeoutIDs[index] = setTimeout(receive, Math.random() * 1000 + 500);
         }
 
-        function pauseFeed() {
+        // toggle the data on
+        function onData() {
+            chart.options.plugins.streaming.pause = false;
+            chart.update();
+            display_data = true;
+        }
 
+        // toggle the data off
+        function offData() {
+            
+            chart.options.plugins.streaming.pause = true;
+            chart.update();
+            display_data = false;
+            console.log('stop');
         }
     </script>
