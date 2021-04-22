@@ -4,12 +4,21 @@
     <title> TI Data Hub </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript" src="js/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-    <script type="text/javascript" src="js/chartjs-plugin-streaming.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@latest/dist/chartjs-plugin-streaming.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
 <header>
     <section id="header">
@@ -490,137 +499,5 @@
             </div>
         </div>
     </div>
+    <script src="js/logic.js"></script>
 </body>
-
-<script>
-
-    var activeChannels = 6;
-
-    // Timing Characteristics
-    var frequency = null;
-    var period = null;
-    var duty = null;
-    var rise = null;
-    var fall = null;
-
-    function generate(num) {
-        var data = Math.round(Math.random() * 1);
-        return data;
-    }
-
-    function hideChannel(num) {
-        var channel = document.getElementById("channelChart" + num);
-        var button = document.getElementById("channelToggle" + num);
-        var settings = document.getElementById("channelSettings" + num);
-        var characteristics = document.getElementById("characteristics" + num);
-        var timing = document.getElementById("timing");
-        if(channel.style.display == 'none') {
-            button.style.color = 'white';
-            button.style.backgroundColor = '#c00';
-            channel.style.display = 'block';
-            settings.style.display = 'block';
-            characteristics.style.display = 'block';
-            activeChannels++;
-            if(activeChannels != 0) {
-                timing.style.display ='block';
-            }
-        } else {
-            button.style.color = 'black';
-            button.style.backgroundColor = 'white';
-            channel.style.display = 'none';
-            settings.style.display = 'none';
-            characteristics.style.display = 'none';
-            activeChannels--;
-            if(activeChannels == 0) {
-                timing.style.display ='none';
-            }
-        }
-    }
-
-    function pauseButton(num){
-        var pause = document.getElementById("pause" + num);
-        var chart = Chart.instances[num];
-        if(pause.innerHTML == "Pause") {
-            pause.innerHTML = "Start";
-            chart.options.scales.xAxes[0].realtime.pause = true;
-            chart.update({duration: 0});
-        } else {
-            pause.innerHTML = "Pause";
-            chart.options.scales.xAxes[0].realtime.pause = false;
-            chart.update({duration: 0});
-        }
-    }
-
-    function getVisibleValues(chart){
-        
-
-
-    }
-
-    function generateCharts() {
-        for(var i = 0; i < 6; i++) {
-            var ctx = document.getElementById("channelChart" + i).getContext('2d');
-            var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Voltage',
-                    pointStyle: 'line',
-                    data: [],
-                    steppedLine: true,
-                    fill: false,
-                    borderColor: 'rgb(14, 173, 105)',
-                }],
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Channel ' + (i + 1),
-                    fontColor: 'rgb(255, 255, 255)',
-                },
-                legend: {
-                    labels: {
-                        defaultFontFamily:  "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
-                        fontColor: 'rgb(255, 255, 255)',
-                    }
-                },
-                color: 'rgb(255, 255, 255)',
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                        ticks: {
-                            beginAtZero: true,
-                            fontColor: 'rgb(255, 255, 255)',
-                        },
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                        ticks: {
-                            beginAtZero: true,
-                            fontColor: 'rgb(255, 255, 255)',
-                        },
-                        type: 'realtime',
-                        realtime: {
-                            onRefresh: function(chart) {
-                                chart.data.datasets.forEach(function(dataset) {
-                                    dataset.data.push({
-                                        x: Date.now(),
-                                        y: generate(chart.id),
-                                    });
-                                });
-                            },
-                            delay: 2000,
-                            pause: false
-                        }
-                    }]
-                },
-            }});
-        }
-    }
-
-    generateCharts();
-</script>

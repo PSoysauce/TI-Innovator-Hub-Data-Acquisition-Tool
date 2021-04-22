@@ -27,6 +27,12 @@ https://git-scm.com/book/en/v2
 Launchpad info:
 https://dev.ti.com/tirex/explore/node?devtools=MSP-EXP432P401R&node=AC5Wb-VBjXI4EELckTDYfQ__FUz-xrs__LATEST
 
+# minify.sh requirements
+html-minifier, terser, and clean-css-cli are used for minification. To install them use:
+```
+npm install html-minifier terser clean-css-cli -g
+```
+
 # Things to do
 Familiarize with GUI Composer Tool
 The target hardware for the GUI is a microcontroller board from TI called MSP432 LaunchPad (Part number MSP-EXP432P401R). This same hardware is used in the product called TI-Innovator Hub. In the beginning of the project we will use the LaunchPad for practice and then try to get the GUI running on the TI-Innovator Hub after the features have been finalized.
