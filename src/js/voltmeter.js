@@ -72,10 +72,13 @@ var voltmeterChart = new Chart(document.getElementById("voltmeterChart"), {
                 realtime: {
                     onRefresh: function (chart) {
                         chart.data.datasets.forEach(function (dataset) {
+                            xVal = Date.now();
+                            yVal = getData();
                             dataset.data.push({
-                                x: Date.now(),
-                                y: getData()
+                                x: xVal,
+                                y: yVal,
                             });
+                            storeChartData(xVal,yVal);
                         });
                     },
                     delay: 1000,
@@ -116,3 +119,31 @@ function offData() {
     display_data = false;
     console.log('stop');
 }
+
+chartData = [];
+
+function storeChartData(xVal, yVal) {
+  chartData.push({ x: xVal, y: yVal });
+}
+
+function convertToCSV() {
+  const csvRows = [];
+  const headers = ["Time,Voltage"];
+  csvRows.push(headers.join(","));
+  for (const row of chartData) {
+    csvRows.push([row.x, row.y].join(","));
+  }
+  download(csvRows.join("\n"));
+}
+
+// how to download the data to a csv
+const download = function (data) {
+  const blob = new Blob([data], { type: "text/csv" });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.setAttribute("href", url);
+  a.setAttribute("download", "download.csv");
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
