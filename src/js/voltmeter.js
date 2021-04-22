@@ -106,6 +106,7 @@ function setBox() {
 
 // toggle the data on
 function onData() {
+    chartData = [];
     voltmeterChart.options.plugins.streaming.pause = false;
     voltmeterChart.update();
     display_data = true;
@@ -113,11 +114,9 @@ function onData() {
 
 // toggle the data off
 function offData() {
-
     voltmeterChart.options.plugins.streaming.pause = true;
     voltmeterChart.update();
     display_data = false;
-    console.log('stop');
 }
 
 chartData = [];

@@ -232,6 +232,7 @@ function startFeed(index) {
 
 // toggle the data on
 function onData() {
+  chartData = [];
   chart.options.plugins.streaming.pause = false;
   chart.update();
   display_data = true;
@@ -242,7 +243,6 @@ function offData() {
   chart.options.plugins.streaming.pause = true;
   chart.update();
   display_data = false;
-  console.log("stop");
 }
 
 chartData = [];
