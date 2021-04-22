@@ -42,6 +42,7 @@
                             </div>
                             <button type="button" class="btn btn-primary" onclick="onData()">Enable Oscilloscope</button>
                             <button type="button" class="btn btn-primary" onclick="offData()">Disable Oscilloscope</button>
+                            <button type="button" class="btn btn-primary" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
                             <form id="settings-form">
                                 <div class="row h-25">
                                     <div class="col-md-6 h-100">
@@ -241,11 +242,15 @@
                     realtime: {
                         onRefresh: function(chart) {
                             chart.data.datasets.forEach(function(dataset) {
+                                xVal = Date.now();
+                                yVal = plotSine();
                                 dataset.data.push({
-                                    x: Date.now(),
+                                    x: xVal,
+                                    y: yVal,
                                     
-                                    y: plotSine(),
                                 });
+                                
+                                storeChartData(xVal, yVal);
                             });
                         },
                         delay: 2000,
@@ -253,6 +258,7 @@
                 }]
             },
         }});
+        
         dataset = [];
         var x = 1;
         var frequency = 1;
@@ -367,5 +373,34 @@
             chart.update();
             display_data = false;
             console.log('stop');
+        }
+
+        chartData = [];
+        
+        function storeChartData(xVal, yVal) {
+            chartData.push({x:xVal, y:yVal});
+        }
+        
+        function convertToCSV() {
+                const csvRows = [];
+                const headers = ["Time,Voltage"];
+                csvRows.push(headers.join(','));
+                for(const row of chartData) {
+                    csvRows.push([row.x, row.y].join(','));
+                }
+                download(csvRows.join('\n'));
+
+        }
+
+        // how to download the data to a csv
+        const download = function(data) {
+            const blob = new Blob([data], {type:'text/csv'});
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href',url);
+            a.setAttribute('download', 'download.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
     </script>
