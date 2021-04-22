@@ -27,7 +27,8 @@ options: {
     scales: {
         yAxes: [{
             gridLines: {
-                drawOnChartArea: false,
+                drawOnChartArea: true,
+                color: "rgb(255,255,255)",
             },
             ticks: {
                 beginAtZero: true,

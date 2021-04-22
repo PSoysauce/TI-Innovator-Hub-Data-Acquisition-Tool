@@ -52,7 +52,8 @@ var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
         scales: {
             yAxes: [{
                 gridLines: {
-                    drawOnChartArea: false,
+                    drawOnChartArea: true,
+                    color: "rgb(0,0,0)",
                 },
                 ticks: {
                     beginAtZero: true,
