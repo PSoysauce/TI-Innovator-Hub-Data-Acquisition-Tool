@@ -448,9 +448,7 @@ generateCharts();
 var frequency = 0;
 
 function generateData() {
-    if(display_data) {
-        return Math.random();
-    }
+    return Math.random();
 }
 
 var display_data = true;
