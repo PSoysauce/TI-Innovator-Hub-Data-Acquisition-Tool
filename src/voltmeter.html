@@ -59,9 +59,17 @@
                                 </div>
                                 <div class="row m-0">
                                     <div class="col-md-12 border border-secondary">
-                                        <button type="button" class="btn btn-primary" onclick="onData()">Enable Voltmeter</button>
-                                        <button type="button" class="btn btn-primary" onclick="offData()">Disable Voltmeter</button>
-                                        <button type="button" class="btn btn-primary" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                        <div style="margin:auto;">
+                                            <div class="col-md-12 py-1">
+                                                <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Enable Oscilloscope</button>
+                                            </div>
+                                            <div class="col-md-12 py-1">
+                                                <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Disable Oscilloscope</button>
+                                            </div>
+                                            <div class="col-md-12 py-1">
+                                                <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

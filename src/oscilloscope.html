@@ -47,9 +47,17 @@
                                     <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border border-secondary"></canvas>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="onData()">Enable Oscilloscope</button>
-                            <button type="button" class="btn btn-primary" onclick="offData()">Disable Oscilloscope</button>
-                            <button type="button" class="btn btn-primary" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                            <div style="margin:auto;">
+                                <div class="col-md-12 py-1">
+                                    <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Enable Oscilloscope</button>
+                                </div>
+                                <div class="col-md-12 py-1">
+                                    <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Disable Oscilloscope</button>
+                                </div>
+                                <div class="col-md-12 py-1">
+                                    <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                </div>
+                            </div>
                             <form id="settings-form">
                                 <div class="row h-25">
                                     <div class="col-md-6 h-100">
