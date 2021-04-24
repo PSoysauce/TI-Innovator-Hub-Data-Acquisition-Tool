@@ -106,10 +106,12 @@ var chart = new Chart(ctx, {
           realtime: {
             onRefresh: function (chart) {
               chart.data.datasets.forEach(function (dataset) {
-                dataset.data.push({
-                  x: Date.now(),
-                  y: plotSine(),
-                });
+                if(display_data) { 
+                  dataset.data.push({
+                    x: Date.now(),
+                    y: plotSine(),
+                  });
+                }
               });
             },
             delay: 2000,
@@ -139,27 +141,23 @@ var display_data = true;
 // funciton plotSine will calculate the y value for the sine curve
 function plotSineWave() {
   switchX();
-  if (display_data) {
-    y_val = amplitude * Math.sin(x / frequency);
-    if (y_val > max_volt) {
-      max_volt = y_val;
-      $("#max-voltage-input").val(y_val.toFixed(2));
-    }
-    if (y_val < min_volt) {
-      min_volt = y_val;
-      $("#min-voltage-input").val(y_val.toFixed(2));
-    }
-    updateStats();
-    return y_val;
+  y_val = amplitude * Math.sin(x / frequency);
+  if (y_val > max_volt) {
+    max_volt = y_val;
+    $("#max-voltage-input").val(y_val.toFixed(2));
   }
+  if (y_val < min_volt) {
+    min_volt = y_val;
+    $("#min-voltage-input").val(y_val.toFixed(2));
+  }
+  updateStats();
+  return y_val;
 }
 
 function plotSine() {
-  if(display_data) {
     updateStats();
     switchX();
     return x;
-  }
 }
 
 function mean() {

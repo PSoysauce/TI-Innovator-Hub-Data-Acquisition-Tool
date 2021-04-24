@@ -72,16 +72,15 @@ var voltmeterChart = new Chart(document.getElementById("voltmeterChart"), {
                 realtime: {
                     onRefresh: function (chart) {
                         chart.data.datasets.forEach(function (dataset) {
-                            xVal = Date.now();
-                            yVal = getData();
-                            dataset.data.push({
-                                x: xVal,
-                                y: yVal,
-                            });
-                            storeChartData(xVal,yVal);
+                            if(display_data) { 
+                                dataset.data.push({
+                                    x: Date.now(),
+                                    y: getData(),
+                                });
+                            }   
                         });
                     },
-                    delay: 1000,
+                    delay: 2000,
                 }
             }]
         },
@@ -119,17 +118,11 @@ function offData() {
     display_data = false;
 }
 
-chartData = [];
-
-function storeChartData(xVal, yVal) {
-  chartData.push({ x: xVal, y: yVal });
-}
-
 function convertToCSV() {
   const csvRows = [];
   const headers = ["Time,Voltage"];
   csvRows.push(headers.join(","));
-  for (const row of chartData) {
+  for (const row of voltmeterChart.data.datasets[0].data) {
     csvRows.push([row.x, row.y].join(","));
   }
   download(csvRows.join("\n"));
