@@ -106,14 +106,10 @@ var chart = new Chart(ctx, {
           realtime: {
             onRefresh: function (chart) {
               chart.data.datasets.forEach(function (dataset) {
-                xVal = Date.now();
-                yVal = plotSine();
                 dataset.data.push({
-                  x: xVal,
-                  y: yVal,
+                  x: Date.now(),
+                  y: plotSine(),
                 });
-
-                storeChartData(xVal, yVal);
               });
             },
             delay: 2000,
@@ -124,7 +120,6 @@ var chart = new Chart(ctx, {
   },
 });
 
-dataset = [];
 var x = 1;
 var frequency = 1;
 var amplitude = 1;
@@ -142,44 +137,41 @@ function updateVars() {
 var display_data = true;
 
 // funciton plotSine will calculate the y value for the sine curve
-function plotSine() {
+function plotSineWave() {
   switchX();
   if (display_data) {
     y_val = amplitude * Math.sin(x / frequency);
     if (y_val > max_volt) {
       max_volt = y_val;
       $("#max-voltage-input").val(y_val.toFixed(2));
-      updateStats();
     }
     if (y_val < min_volt) {
       min_volt = y_val;
       $("#min-voltage-input").val(y_val.toFixed(2));
-      updateStats();
     }
-    dataset.push(y_val);
+    updateStats();
     return y_val;
   }
 }
 
-function median() {
-  array = dataset.sort();
-  if (array.length % 2 === 0) {
-    // array with even number elements
-    return (array[array.length / 2] + array[array.length / 2 - 1]) / 2;
-  } else {
-    return array[(array.length - 1) / 2]; // array with odd number elements
+function plotSine() {
+  if(display_data) {
+    updateStats();
+    switchX();
+    return x;
   }
 }
 
 function mean() {
   sum = 0;
-  dataset.forEach((element) => (sum += element));
-  return sum / dataset.length;
+  for (const row of chart.data.datasets[0].data) {
+    sum += row.y;
+  }
+  return Math.round(sum / chart.data.datasets[0].data.length * 100) / 100;
 }
 
 function updateStats() {
   $("#mean-voltage-input").val(mean());
-  $("#median-voltage-input").val(median());
 }
 
 // function switchX will osillate between -1 and 1
@@ -191,21 +183,6 @@ function switchX() {
   }
 }
 
-$("#settings-form :input").change(function () {
-  if (this.id.includes("range")) {
-    // if a slider
-    $("#" + this.id.substring(0, this.id.indexOf("range")) + "input").val(
-      this.value
-    );
-  } else if (this.id.includes("input")) {
-    // if a input box
-    $("#" + this.id.substring(0, this.id.indexOf("input")) + "range").val(
-      this.value
-    );
-  }
-  updateVars();
-});
-
 function onReceive(event) {
   window.myChart.config.data.datasets[event.index].data.push({
     x: event.timestamp,
@@ -216,23 +193,9 @@ function onReceive(event) {
   });
 }
 
-var timeoutIDs = [];
-
-function startFeed(index) {
-  var receive = function () {
-    onReceive({
-      index: index,
-      timestamp: Date.now(),
-      value: randomScalingFactor(),
-    });
-    timeoutIDs[index] = setTimeout(receive, Math.random() * 1000 + 500);
-  };
-  timeoutIDs[index] = setTimeout(receive, Math.random() * 1000 + 500);
-}
-
 // toggle the data on
 function onData() {
-  chartData = [];
+  chart.clear();
   chart.options.plugins.streaming.pause = false;
   chart.update();
   display_data = true;
@@ -245,17 +208,11 @@ function offData() {
   display_data = false;
 }
 
-chartData = [];
-
-function storeChartData(xVal, yVal) {
-  chartData.push({ x: xVal, y: yVal });
-}
-
 function convertToCSV() {
   const csvRows = [];
   const headers = ["Time,Voltage"];
   csvRows.push(headers.join(","));
-  for (const row of chartData) {
+  for (const row of chart.data.datasets[0].data) {
     csvRows.push([row.x, row.y].join(","));
   }
   download(csvRows.join("\n"));
