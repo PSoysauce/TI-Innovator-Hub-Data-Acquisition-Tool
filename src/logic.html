@@ -67,6 +67,13 @@
                                                 <option> Triggers ANDed </option>
                                             </select>
                                         </div>
+                                        <div class="col-md-12 pb-3">
+                                            <button onClick="pauseButtonAll" id="pauseAll" class="btn-settings btn-border w-100">Pause All Charts</button>
+                                        </div>
+
+                                        <div class="col-md-12 pb-3">
+                                            <button onClick="exportCVS" id="exportAll" class="btn-settings btn-border w-100">Export All Charts</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -258,44 +265,26 @@
                                     <canvas id="channelChart0" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics0">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(0)" id="start0" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(0)">Export Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -304,44 +293,26 @@
                                     <canvas id="channelChart1" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics1">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(1)" id="pause1" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(1)" id="start1" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(1)">Export Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -350,44 +321,26 @@
                                     <canvas id="channelChart2" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics2">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(2)" id="pause2" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(2)" id="start2" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(2)">Export Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -396,44 +349,26 @@
                                     <canvas id="channelChart3" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics3">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(3)" id="pause3" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(3)" id="start3" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(3)">Export Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -442,47 +377,27 @@
                                     <canvas id="channelChart4" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics4">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(4)" id="pause4" class="btn-settings btn-border w-100">Pause</button>
                                     </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(4)" id="start4" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(4)">Export Data</button>
-                                    </div>
-                                    
-
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
@@ -490,44 +405,26 @@
                                     <canvas id="channelChart5" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics5">
-                                    <div class="input-group input-group-sm my-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm my-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="input-group input-group-sm mb-2">
+                                    <div class="input-group input-group-sm mb-4">
                                         <div class="input-group-prepend">
                                           <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
                                         </div>
                                         <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                                     </div>
-                                    <div class="col-md-12 py-1">
+                                    <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(5)" id="pause5" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button onClick="start(5)" id="start5" class="btn-settings btn-border w-100">Start</button>
-                                    </div>
-                                    <div class="col-md-12 py-1">
-                                        <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV(5)">Export Data</button>
                                     </div>
                                 </div>
                             </div>
