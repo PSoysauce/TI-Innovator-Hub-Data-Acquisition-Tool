@@ -61,162 +61,22 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
                                             </div>
-                                            <select class="form-select">
-                                                <option selected> No Triggers </option>
-                                                <option> Triggers ORed </option>
-                                                <option> Triggers ANDed </option>
+                                            <select class="form-select" id="trigger">
+                                                <option selected> Auto Trigger </option>
+                                                <option> Pattern Trigger </option>
                                             </select>
+                                        </div>
+                                        <div class="input-group input-group-sm my-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Pattern</span>
+                                            </div>
+                                            <input type="number" step="1" class="form-control" id="pattern">
                                         </div>
                                         <div class="col-md-12 pb-3">
-                                            <button onClick="pauseButtonAll" id="pauseAll" class="btn-settings btn-border w-100">Pause All Charts</button>
+                                            <button onClick="pauseAll()" id="pauseAll" class="btn-settings btn-border w-100">Pause All Charts</button>
                                         </div>
-
                                         <div class="col-md-12 pb-3">
-                                            <button onClick="exportCVS" id="exportAll" class="btn-settings btn-border w-100">Export All Charts</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings0">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 1 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings1">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 2 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings2">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 3 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings3">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 4 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings4">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 5 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-2" id="channelSettings5">
-                                <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <h4 class="text-center"> Channel 6 Settings </h1>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                        <div class="input-group input-group-sm my-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
-                                            </div>
-                                            <select class="form-select">
-                                                <option selected> None </option>
-                                                <option> Low (0) </option>
-                                                <option> High (1) </option>
-                                                <option> Rising </option>
-                                                <option> Falling </option>
-                                                <option> Either Edge </option>
-                                            </select>
+                                            <button onClick="exportCVS()" id="exportAll" class="btn-settings btn-border w-100">Export All Charts</button>
                                         </div>
                                     </div>
                                 </div>
@@ -235,22 +95,22 @@
                                             <div class="navbar-nav w-100">
                                                 <div class="col-md-12 text-center">
                                                     <div class="row p-0 m-0">
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(0)" id="channelToggle0" class="btn-settings btn-border w-100">1</button>
                                                         </div>
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(1)" id="channelToggle1" class="btn-settings btn-border w-100">2</button>
                                                         </div>
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(2)" id="channelToggle2" class="btn-settings btn-border w-100">3</button>
                                                         </div>
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(3)" id="channelToggle3" class="btn-settings btn-border w-100">4</button>
                                                         </div>
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(4)" id="channelToggle4" class="btn-settings btn-border w-100">5</button>
                                                         </div>
-                                                        <div class="col-md-2 p-0">
+                                                        <div class="col-md-2 p-0 border border-dark">
                                                             <button onClick="hideChannel(5)" id="channelToggle5" class="btn-settings btn-border w-100">6</button>
                                                         </div>
                                                     </div>
@@ -261,30 +121,12 @@
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-10 p-0 m-0">
                                     <canvas id="channelChart0" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics0">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
+                                <div class="col-md-2 text-white bg-dark-custom border border-secondary" id="characteristics0">
                                     <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100">Pause</button>
+                                        <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100 h-100">Pause</button>
                                     </div>
                                 </div>
                             </div>
@@ -293,24 +135,6 @@
                                     <canvas id="channelChart1" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics1">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
                                     <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(1)" id="pause1" class="btn-settings btn-border w-100">Pause</button>
                                     </div>
@@ -321,24 +145,6 @@
                                     <canvas id="channelChart2" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics2">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
                                     <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(2)" id="pause2" class="btn-settings btn-border w-100">Pause</button>
                                     </div>
@@ -349,24 +155,6 @@
                                     <canvas id="channelChart3" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics3">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
                                     <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(3)" id="pause3" class="btn-settings btn-border w-100">Pause</button>
                                     </div>
@@ -377,24 +165,6 @@
                                     <canvas id="channelChart4" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics4">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
                                     <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(4)" id="pause4" class="btn-settings btn-border w-100">Pause</button>
                                     </div>
@@ -405,24 +175,6 @@
                                     <canvas id="channelChart5" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                                 <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics5">
-                                    <div class="input-group input-group-sm my-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
-                                    <div class="input-group input-group-sm mb-4">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                        </div>
-                                        <input disabled type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
                                     <div class="col-md-12 py-2">
                                         <button onClick="pauseButton(5)" id="pause5" class="btn-settings btn-border w-100">Pause</button>
                                     </div>

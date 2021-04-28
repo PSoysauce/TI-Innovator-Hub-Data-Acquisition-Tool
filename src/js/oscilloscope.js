@@ -211,7 +211,8 @@ function convertToCSV() {
   const headers = ["Time,Voltage"];
   csvRows.push(headers.join(","));
   for (const row of chart.data.datasets[0].data) {
-    csvRows.push([row.x, row.y].join(","));
+    varto,e = new Date(row.x).toString().replace("GMT-0500 (Central Daylight Time)", "");
+    csvRows.push([time, row.y].join(","));
   }
   download(csvRows.join("\n"));
 }

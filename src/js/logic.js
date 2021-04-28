@@ -1,23 +1,20 @@
 var activeChannels = 6;
-var paused = false;
 
 function generate(num) {
     var data = Math.round(Math.random() * 1);
-    callFunctions(num);
+    callTriggerFunctions(num);
     return data;
 }
 
 function hideChannel(num) {
     var channel = document.getElementById("channelChart" + num);
     var button = document.getElementById("channelToggle" + num);
-    var settings = document.getElementById("channelSettings" + num);
     var characteristics = document.getElementById("characteristics" + num);
     var timing = document.getElementById("timing");
     if(channel.style.display == 'none') {
         button.style.color = 'white';
         button.style.backgroundColor = '#c00';
         channel.style.display = 'block';
-        settings.style.display = 'block';
         characteristics.style.display = 'block';
         activeChannels++;
         if(activeChannels != 0) {
@@ -27,7 +24,6 @@ function hideChannel(num) {
         button.style.color = 'black';
         button.style.backgroundColor = 'white';
         channel.style.display = 'none';
-        settings.style.display = 'none';
         characteristics.style.display = 'none';
         activeChannels--;
         if(activeChannels == 0) {
@@ -43,52 +39,130 @@ function pauseButton(num){
         pause.innerHTML = "Start";
         chart.options.scales.xAxes[0].realtime.pause = true;
         chart.update({duration: 0});
-    } else {
+    } else if(pause.innerHTML == "Start") {
         pause.innerHTML = "Pause";
         chart.options.scales.xAxes[0].realtime.pause = false;
         chart.update({duration: 0});
     }
 }
 
-function callFunctions(num){
+function pauseAll() {
+    var pause = document.getElementById("pauseAll");
+    for(var i = 0; i < 6; i++) {
+        pauseButton(i);
+    }
+    if(pause.innerHTML == "Pause All Charts") {
+        pause.innerHTML = "Start All Charts";
+    } else {
+        pause.innerHTML = "Pause All Charts";
+    }
+}
+
+function exportCVS() {
+    const csvRows = [];
+    const headers = ["Chart ID,Time,Voltage"];
+    var chart = null;
+    csvRows.push(headers.join(","));
+    for(var i = 0; i < 6; i++) {
+        chart = Chart.instances[i];
+        chart.data.datasets[1].data.forEach(function (point) {
+            var time = new Date(point.x).toString().replace("GMT-0500 (Central Daylight Time)", "");
+            csvRows.push([i + 1, time, point.y]);
+        });
+    }
+    download(csvRows.join('\n'));
+}
+
+const download = function (data) {
+    const blob = new Blob([data], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.setAttribute("href", url);
+    a.setAttribute("download", "download.csv");
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+function callTriggerFunctions(num){
     var chart = Chart.instances[num];
+    var trigger = document.getElementById("trigger");
+    var triggerSelection = trigger.options[trigger.selectedIndex].text;
     var data = []; // data[i].x || data[i].y
 
-    var dutyCycle = 0;
+    var validPattern = -1;
 
-    chart.data.datasets[0].data.forEach(function (point) {
-        data.push(point);
-    });
+    if (triggerSelection == "Pattern Trigger"){
+        var pattern = document.getElementById("pattern");
+        var textP = pattern.value;
+        
+        if(textP == null) {
+            return;
+        }
+        
+        validPattern = validatePattern(textP);
 
-    // Rise & Fall Times
-    for(var i = 0; i < data.length; i++){
-        if(i != 0) {
-            if(data[i-1].y == 0 && data[i].y == 1){
-                var riseTime = data[i].x;
-                const today = new Date(data[i].x);
-                console.log(today.toISOString());
-            }
-            else if(data[i-1].y == 1 && data[i].y == 0){
-                var fallTime = data[i].x;
-                //console.log(fallTime);
-            }
-            else{
-                console.log("No Change");
-            }
+        if(validPattern == 1){
+            patternTrigger(num,textP);
+        }
+        else{
+            console.log("Error - Invalid Pattern");
         }
     }
-    
+
+    chart.data.datasets[1].data.forEach(function (point) {
+        data.push(point);
+    });
 }
 
-function getDutyCycle(dataPoint){
-    // ratio of time on vs. off
-    var dutyCycle = 0;
-    
-    return dutyCycle;
+function findPattern(chart, pattern) {
+    var data = [];
+    chart.data.datasets[1].data.forEach(function (point) {
+        data.push(point.y);
+    });
+    var string = data.join("");
+    if(string.indexOf(pattern) != -1) {
+        return string.indexOf(pattern.toString());
+    } else {
+        return -1;
+    }
 }
 
-function getVisibleValues(chart){
-    
+function validatePattern(pattern){
+    for(i = 0; i < pattern.length; i++){
+        console.log(pattern[i]);
+        if (pattern[i] != '1' && pattern[i] != '0'){
+            return -1;
+        }
+        else{
+            return 1;
+        }
+    }
+}
+
+function patternTrigger(num,pattern){
+    var chart = Chart.instances[num];
+
+    index = findPattern(chart, pattern);
+
+    if(index != -1) {
+        for(var i = index; i < pattern.length + index; i++) {
+            chart.data.datasets[0].data.push({
+                x: chart.data.datasets[1].data[i].x,
+                y: chart.data.datasets[1].data[i].y,
+            });
+        }
+
+    } else {
+        return -1;
+    }
+}
+
+function callThreshold(num){
+    var chart = Chart.instances[num];
+    var threshold = document.getElementById("threshold");
+    var thresholdValue = threshold.options[threshold.selectedIndex].text;
+    var data = [];
 }
 
 function generateCharts() {
@@ -98,6 +172,18 @@ function generateCharts() {
         type: 'line',
         data: {
             datasets: [{
+                    label: 'Pattern',
+                    pointStyle: 'circle',
+                    data: [],
+                    steppedLine: false,
+                    showLine: false,
+                    fill: false,
+                    borderColor: 'rgb(255, 255, 255)',
+                    pointBorderColor: 'rgb(255, 255, 255)',
+                    pointBackgroundColor: 'rgb(255, 255, 255)',
+                    pointRadius: 5,
+                    pointHoverRadius: 5,
+                }, {
                 label: 'Voltage',
                 pointStyle: 'line',
                 data: [],
@@ -118,6 +204,7 @@ function generateCharts() {
                     fontColor: 'rgb(255, 255, 255)',
                 }
             },
+            showTooltips: false,
             color: 'rgb(255, 255, 255)',
             scales: {
                 yAxes: [{
@@ -141,16 +228,14 @@ function generateCharts() {
                     realtime: {
                         onRefresh: function(chart) {
                             if(chart.options.scales.xAxes[0].realtime.pause == false) {
-                                chart.data.datasets.forEach(function(dataset) {
-                                    dataset.data.push({
-                                        x: Date.now(),
-                                        y: generate(chart.id),
-                                    });
+                                chart.data.datasets[1].data.push({
+                                    x: Date.now(),
+                                    y: generate(chart.id),
                                 });
                             }
                         },
                         delay: 2000,
-                        pause: false
+                        pause: true,
                     }
                 }]
             },

@@ -41,112 +41,116 @@
             <div class="row h-100">
                 <div class="col-md-12"> 
                     <div class="row h-100 main">
-                        <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
+                        <div class="col-md-4 mt-2">
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="row m-0">
+                                        <div class="col-md-12 border border-secondary">
+                                            <h4 class="text-center"> Universal Settings </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0">
+                                        <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                            <div>
+                                                <div class="col-md-12 py-3">
+                                                    <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Start Oscilloscope</button>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Pause Oscilloscope</button>
+                                                </div>
+                                                <div class="col-md-12 py-3">
+                                                    <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form id="settings-form">
+                                            <div class="row">
+                                                <div class="col-md-12 p-0 m-0">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-md-12 border border-secondary">
+                                                            <h3 class="text-center"> Timing Characteristics </h1>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-0">
+                                                        <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                                            <div class="input-group input-group-sm my-3">
+                                                                <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
+                                                                </div>
+                                                                <input disabled type="text" id="freq-input" class="form-control" aria-label="Small" aria-describedby="freq-input" value="1">
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
+                                                                </div>
+                                                                <input disabled type="text" class="form-control" id="period-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
+                                                                </div>
+                                                                <input disabled type="text" class="form-control" id="duty-cycle-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
+                                                                </div>
+                                                                <input disabled type="text" class="form-control" id="rise-time-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            </div>
+                                                            <div class="input-group input-group-sm mb-3">
+                                                                <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
+                                                                </div>
+                                                                <input disabled type="text" class="form-control" id="fall-time-input"aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3 p-0 m-0">
+                                                    <div class="col-md-12 border border-secondary">
+                                                        <h3 class="text-center"> Voltage Characteristics </h1>
+                                                    </div>
+                                                </div>
+                                                <div class="row m-0 p-0 m-0">
+                                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                                        <div class="input-group input-group-sm my-3">
+                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Amplitude</span>
+                                                            </div>
+                                                            <input disabled type="text" id="amplitude-input" class="form-control" aria-label="Small" aria-describedby="amplitude-input" value="1">
+                                                        </div>
+                                                        <div class="input-group input-group-sm mb-3">
+                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Maximum Voltage</span>
+                                                            </div>
+                                                            <input disabled type="text" id="max-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
+                                                        </div>
+                                                        <div class="input-group input-group-sm mb-3">
+                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Minimum Voltage</span>
+                                                            </div>
+                                                            <input disabled type="text" id="min-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
+                                                        </div>
+                                                        <div class="input-group input-group-sm mb-3">
+                                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Mean Voltage</span>
+                                                            </div>
+                                                            <input disabled type="text" id="mean-voltage-input" value="0" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 m-0 p-0 h-100 float-left border border-secondary">
                             <div class="row">
                                 <div class="col-md-12">
                                     <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border border-secondary"></canvas>
                                 </div>
                             </div>
-                            <div style="margin:auto;">
-                                <div class="col-md-12 py-1">
-                                    <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Start Oscilloscope</button>
-                                </div>
-                                <div class="col-md-12 py-1">
-                                    <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Pause Oscilloscope</button>
-                                </div>
-                                <div class="col-md-12 py-1">
-                                    <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
-                                </div>
-                            </div>
-                            <form id="settings-form">
-                                <div class="row h-25">
-                                    <div class="col-md-6 h-100">
-                                        <div class="row m-0">
-                                            <div class="col-md-12 border border-secondary">
-                                                <h3 class="text-center"> Timing Characteristics </h1>
-                                            </div>
-                                        </div>
-                                        
-                                            <div class="row m-0">
-                                                <div class="col-md-12 border border-secondary">
-                                                    <div class="input-group input-group-sm mb-3">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Frequency</span>
-                                                        </div>
-                                                        <input disabled type="text" id="freq-input" class="form-control" aria-label="Small" aria-describedby="freq-input" value="1">
-                                                    </div>
-                                                    <div class="input-group input-group-sm mb-3">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Period</span>
-                                                        </div>
-                                                        <input disabled type="text" class="form-control" id="period-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                    </div>
-                                                    <div class="input-group input-group-sm mb-3">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Duty Cycle</span>
-                                                        </div>
-                                                        <input disabled type="text" class="form-control" id="duty-cycle-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                    </div>
-                                                    <div class="input-group input-group-sm mb-3">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Rise Time</span>
-                                                        </div>
-                                                        <input disabled type="text" class="form-control" id="rise-time-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                    </div>
-                                                    <div class="input-group input-group-sm mb-3">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Fall Time</span>
-                                                        </div>
-                                                        <input disabled type="text" class="form-control" id="fall-time-input"aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    
-                                        
-                                    </div>
-                                    <div class="col-md-6 h-100">
-                                        <div class="row m-0">
-                                            <div class="col-md-12 border border-secondary">
-                                                <h3 class="text-center"> Voltage Characteristics </h1>
-                                            </div>
-                                        </div>
-                                        <div class="row m-0">
-                                            <div class="col-md-12 border border-secondary">
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Amplitude</span>
-                                                    </div>
-                                                    <input disabled type="text" id="amplitude-input" class="form-control" aria-label="Small" aria-describedby="amplitude-input" value="1">
-                                                </div>
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Maximum Voltage</span>
-                                                    </div>
-                                                    <input disabled type="text" id="max-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
-                                                </div>
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Minimum Voltage</span>
-                                                    </div>
-                                                    <input disabled type="text" id="min-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
-                                                </div>
-                                                <!-- <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Median Voltage</span>
-                                                    </div>
-                                                    <input disabled type="text" id="median-voltage-input" value="0" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                </div> -->
-                                                <div class="input-group input-group-sm mb-3">
-                                                    <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Mean Voltage</span>
-                                                    </div>
-                                                    <input disabled type="text" id="mean-voltage-input" value="0" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
