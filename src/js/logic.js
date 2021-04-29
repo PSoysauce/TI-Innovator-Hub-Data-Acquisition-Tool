@@ -10,26 +10,20 @@ function generate(num) {
 function hideChannel(num) {
     var channel = document.getElementById("channelChart" + num);
     var button = document.getElementById("channelToggle" + num);
-    var characteristics = document.getElementById("characteristics" + num);
+    var settings = document.getElementById("channelSettings" + num);
     var timing = document.getElementById("timing");
     if(channel.style.display == 'none') {
         button.style.color = 'white';
         button.style.backgroundColor = '#c00';
         channel.style.display = 'block';
-        characteristics.style.display = 'block';
+        settings.style.display = 'block';
         activeChannels++;
-        if(activeChannels != 0) {
-            timing.style.display ='block';
-        }
     } else {
         button.style.color = 'black';
         button.style.backgroundColor = 'white';
         channel.style.display = 'none';
-        characteristics.style.display = 'none';
+        settings.style.display = 'none';
         activeChannels--;
-        if(activeChannels == 0) {
-            timing.style.display ='none';
-        }
     }
 }
 
