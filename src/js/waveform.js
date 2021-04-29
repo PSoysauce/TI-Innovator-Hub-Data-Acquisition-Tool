@@ -47,15 +47,24 @@ var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
         },
         title: {
             display: true,
-            text: 'Theoretical Waveform'
+            text: 'Theoretical Waveform',
+            fontColor: 'rgb(255, 255, 255)',
         },
+        legend: {
+            labels: {
+                defaultFontFamily: "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
+                fontColor: 'rgb(255, 255, 255)',
+            }
+        },
+        color: 'rgb(255, 255, 255)',
         scales: {
             yAxes: [{
                 gridLines: {
                     drawOnChartArea: true,
-                    color: "rgb(0,0,0)",
+                    color: 'rgb(255,255,255)',
                 },
                 ticks: {
+                    fontColor: 'rgb(255, 255, 255)',
                     beginAtZero: true,
                     callback: function(value, index, values) {
                         return value + ' V';
@@ -69,6 +78,7 @@ var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
             }],
             xAxes: [{
                 ticks: {
+                    fontColor: 'rgb(255, 255, 255)',
                     beginAtZero: true,
                     callback: function(value, index, values) {
                         return value + 's';
