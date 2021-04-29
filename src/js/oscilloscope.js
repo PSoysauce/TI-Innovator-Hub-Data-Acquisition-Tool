@@ -157,6 +157,8 @@ function plotSineWave() {
 function plotSine() {
     updateStats();
     switchX();
+    $("#max-voltage-input").val(1);
+    $("#min-voltage-input").val(1);
     return x;
 }
 
@@ -211,7 +213,7 @@ function convertToCSV() {
   const headers = ["Time,Voltage"];
   csvRows.push(headers.join(","));
   for (const row of chart.data.datasets[0].data) {
-    varto,e = new Date(row.x).toString().replace("GMT-0500 (Central Daylight Time)", "");
+    time = new Date(row.x).toString().replace("GMT-0500 (Central Daylight Time)", "");
     csvRows.push([time, row.y].join(","));
   }
   download(csvRows.join("\n"));
