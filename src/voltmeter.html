@@ -41,38 +41,38 @@
         <div class="row h-100">
             <div class="col-md-12"> 
                 <div class="row h-100 main">
-                    <div class="col-md-12 m-0 p-0 h-100 float-left border border-secondary">
-                        <div class="row">
-                            <div style="margin:auto;width:40%;border: 10px;border-style: solid; border-radius: 5px; border-color: black; background-color:beige">
-                                <input readonly id="volt" class="col-md-12" value="__V" style="border: none; height:200px;background-color: beige;  text-align: center; font-size: 100px;">
-                            </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="row mt-2">
                             <div class="col-md-12">
-                                <canvas id="voltmeterChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
-                            </div>
-                        </div>
-                        <div >
-                            <div >
                                 <div class="row m-0">
                                     <div class="col-md-12 border border-secondary">
-                                        <h3 class="text-center"> Voltmeter </h1>
+                                        <h4 class="text-center"> Universal Settings </h1>
                                     </div>
                                 </div>
                                 <div class="row m-0">
-                                    <div class="col-md-12 border border-secondary">
-                                        <div style="margin:auto;">
-                                            <div class="col-md-12 py-1">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div>
+                                            <div class="input-group input-group-sm my-2">
+                                                <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Voltage</span>
+                                                </div>
+                                                <input disabled type="text" id="volt" class="form-control" aria-label="Small" aria-describedby="volt-input" value="1">
+                                            </div>
+                                            <div class="col-md-12 py-2">
                                                 <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Start Voltmeter</button>
                                             </div>
-                                            <div class="col-md-12 py-1">
+                                            <div class="col-md-12 py-2">
                                                 <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Pause Voltmeter</button>
-                                            </div>
-                                            <div class="col-md-12 py-1">
-                                                <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 m-0 p-0 h-100 float-left border border-secondary">
+                        <div class="col-md-12">
+                            <canvas id="voltmeterChart" class="w-100 border bg-dark-custom border-secondary"></canvas>
                         </div>
                     </div>
                 </div>

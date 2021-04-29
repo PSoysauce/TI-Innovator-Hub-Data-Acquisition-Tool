@@ -117,25 +117,3 @@ function offData() {
     voltmeterChart.update();
     display_data = false;
 }
-
-function convertToCSV() {
-  const csvRows = [];
-  const headers = ["Time,Voltage"];
-  csvRows.push(headers.join(","));
-  for (const row of voltmeterChart.data.datasets[0].data) {
-    csvRows.push([row.x, row.y].join(","));
-  }
-  download(csvRows.join("\n"));
-}
-
-// how to download the data to a csv
-const download = function (data) {
-  const blob = new Blob([data], { type: "text/csv" });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.setAttribute("href", url);
-  a.setAttribute("download", "download.csv");
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-};
