@@ -55,7 +55,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Voltage Threshold</span>
                                             </div>
-                                            <input type="number" step="0.01" class="form-control" placeholder="0">
+                                            <input type="number" step="0.1" class="form-control" id="threshold" placeholder="0.5">
                                         </div>
                                         <div class="input-group input-group-sm my-3">
                                             <div class="input-group-prepend">
@@ -70,13 +70,97 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Pattern</span>
                                             </div>
-                                            <input type="number" step="1" class="form-control" id="pattern">
+                                            <input type="number" step="1" class="form-control" id="pattern" placeholder="0">
                                         </div>
                                         <div class="col-md-12 pb-3">
-                                            <button onClick="pauseAll()" id="pauseAll" class="btn-settings btn-border w-100">Pause All Charts</button>
+                                            <button onClick="pauseAll()" id="pauseAll" class="btn-settings btn-border w-100">Start All Charts</button>
                                         </div>
                                         <div class="col-md-12 pb-3">
                                             <button onClick="exportCVS()" id="exportAll" class="btn-settings btn-border w-100">Export All Charts</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings0">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 1 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100 h-100">Start</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings1">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 2 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(1)" id="pause1" class="btn-settings btn-border w-100 h-100">Start</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings2">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 3 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(2)" id="pause2" class="btn-settings btn-border w-100 h-100">Start</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings3">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 4 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(3)" id="pause3" class="btn-settings btn-border w-100 h-100">Start</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings4">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 5 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(4)" id="pause4" class="btn-settings btn-border w-100 h-100">Start</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2" id="channelSettings5">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Channel 6 Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div class="col-md-12 py-2">
+                                            <button onClick="pauseButton(5)" id="pause5" class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -121,63 +205,33 @@
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-10 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart0" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-2 text-white bg-dark-custom border border-secondary" id="characteristics0">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100 h-100">Pause</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart1" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics1">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(1)" id="pause1" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart2" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics2">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(2)" id="pause2" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart3" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics3">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(3)" id="pause3" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart4" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics4">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(4)" id="pause4" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row p-0 m-0">
-                                <div class="col-md-8 p-0 m-0">
+                                <div class="col-md-12 p-0 m-0">
                                     <canvas id="channelChart5" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
-                                </div>
-                                <div class="col-md-4 text-white bg-dark-custom border border-secondary" id="characteristics5">
-                                    <div class="col-md-12 py-2">
-                                        <button onClick="pauseButton(5)" id="pause5" class="btn-settings btn-border w-100">Pause</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
