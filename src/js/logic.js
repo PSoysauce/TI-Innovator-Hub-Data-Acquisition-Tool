@@ -2,7 +2,8 @@ var activeChannels = 6;
 
 function generate(num) {
     var data = Math.round(Math.random() * 1);
-    callTriggerFunctions(num);
+    triggerManager(num);
+    thresholdManager(num);
     return data;
 }
 
@@ -84,13 +85,10 @@ const download = function (data) {
     document.body.removeChild(a);
   };
 
-function callTriggerFunctions(num){
+function triggerManager(num){
     var chart = Chart.instances[num];
     var trigger = document.getElementById("trigger");
     var triggerSelection = trigger.options[trigger.selectedIndex].text;
-    var data = []; // data[i].x || data[i].y
-
-    var validPattern = -1;
 
     if (triggerSelection == "Pattern Trigger"){
         var pattern = document.getElementById("pattern");
@@ -99,20 +97,10 @@ function callTriggerFunctions(num){
         if(textP == null) {
             return;
         }
-        
-        validPattern = validatePattern(textP);
-
-        if(validPattern == 1){
+        if(validatePattern(textP) == 1){
             patternTrigger(num,textP);
         }
-        else{
-            console.log("Error - Invalid Pattern");
-        }
     }
-
-    chart.data.datasets[1].data.forEach(function (point) {
-        data.push(point);
-    });
 }
 
 function findPattern(chart, pattern) {
@@ -130,7 +118,6 @@ function findPattern(chart, pattern) {
 
 function validatePattern(pattern){
     for(i = 0; i < pattern.length; i++){
-        console.log(pattern[i]);
         if (pattern[i] != '1' && pattern[i] != '0'){
             return -1;
         }
@@ -143,7 +130,7 @@ function validatePattern(pattern){
 function patternTrigger(num,pattern){
     var chart = Chart.instances[num];
 
-    index = findPattern(chart, pattern);
+    index = findPattern(chart,pattern);
 
     if(index != -1) {
         for(var i = index; i < pattern.length + index; i++) {
@@ -158,11 +145,25 @@ function patternTrigger(num,pattern){
     }
 }
 
-function callThreshold(num){
+function thresholdManager(num){
     var chart = Chart.instances[num];
-    var threshold = document.getElementById("threshold");
-    var thresholdValue = threshold.options[threshold.selectedIndex].text;
-    var data = [];
+    threshold = document.getElementById("threshold");
+    threshold.addEventListener("change", detectedChange);
+
+    thresholdValue = threshold.value;
+
+    chart.data.datasets[1].data.forEach(function (point) {
+        if(thresholdValue > 0){
+            chart.data.datasets[2].data.push({
+                x: point.x,
+                y: thresholdValue,
+            });
+        }
+    });
+
+    function detectedChange(e){
+        chart.data.datasets[2].data = [];
+    }
 }
 
 function generateCharts() {
@@ -171,7 +172,8 @@ function generateCharts() {
         var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            datasets: [{
+            datasets: [
+                {
                     label: 'Pattern',
                     pointStyle: 'circle',
                     data: [],
@@ -183,29 +185,40 @@ function generateCharts() {
                     pointBackgroundColor: 'rgb(255, 255, 255)',
                     pointRadius: 5,
                     pointHoverRadius: 5,
-                }, {
-                label: 'Voltage',
-                pointStyle: 'line',
-                data: [],
-                steppedLine: true,
-                fill: false,
-                borderColor: 'rgb(14, 173, 105)',
-            }],
+                }, 
+                {
+                    label: 'Voltage',
+                    pointStyle: 'line',
+                    data: [],
+                    steppedLine: true,
+                    fill: false,
+                    borderColor: 'rgb(14, 173, 105)',
+                },
+                {
+                    label: 'Threshold',
+                    pointStyle: 'line',
+                    data: [],
+                    steppedLine: false,
+                    fill: false,
+                    borderColor: 'green',
+                }
+            ],
         },
         options: {
+            responsive: true,
             title: {
                 display: true,
                 text: 'Channel ' + (i + 1),
                 fontColor: 'rgb(255, 255, 255)',
             },
             legend: {
+                display: false,
                 labels: {
                     defaultFontFamily:  "'Roboto', 'Franklin Gothic Medium', 'Tahoma', 'sans-serif",
                     fontColor: 'rgb(255, 255, 255)',
-                }
+                },
             },
             showTooltips: false,
-            color: 'rgb(255, 255, 255)',
             scales: {
                 yAxes: [{
                     gridLines: {
@@ -238,7 +251,7 @@ function generateCharts() {
                         pause: true,
                     }
                 }]
-            },
+            }
         }});
     }
 }
