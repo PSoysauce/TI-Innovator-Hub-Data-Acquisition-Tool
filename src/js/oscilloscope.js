@@ -23,6 +23,7 @@ $("#settings-form input").inputFilter(function (value) {
   return /^-{0,1}\d*\.{0,1}\d*$/.test(value);
 });
 
+// Sets up the char.js chart that is called oscilloscopeChart
 var ctx = document.getElementById("oscilloscopeChart").getContext("2d");
 var chart = new Chart(ctx, {
   type: "line",
@@ -129,16 +130,17 @@ var period = 1 / frequency;
 var max_volt = 0,
   min_volt = 0;
 
+// updateVars will update all of the variables once new values are inputed
 function updateVars() {
   frequency = parseFloat($("#freq-input").val());
-
   frequency = frequency <= 0 ? 0.01 : frequency;
   amplitude = parseFloat($("#amplitude-input").val());
 }
 
+// will start displaying data once the page is opened
 var display_data = true;
 
-// funciton plotSine will calculate the y value for the sine curve
+// funciton plotSine will calculate the y value for the sine curve and will update the current value
 function plotSineWave() {
   switchX();
   y_val = amplitude * Math.sin(x / frequency);
@@ -154,6 +156,7 @@ function plotSineWave() {
   return y_val;
 }
 
+// plotSine is used to graph the sine curve, for now this data simply generates -1 or 1
 function plotSine() {
     updateStats();
     switchX();
@@ -162,6 +165,7 @@ function plotSine() {
     return x;
 }
 
+// mean calculates the mean of all the graph values
 function mean() {
   sum = 0;
   for (const row of chart.data.datasets[0].data) {
@@ -170,6 +174,7 @@ function mean() {
   return Math.round(sum / chart.data.datasets[0].data.length * 100) / 100;
 }
 
+// update Stats is used to update the mean value whenever it changes
 function updateStats() {
   $("#mean-voltage-input").val(mean());
 }
@@ -183,6 +188,7 @@ function switchX() {
   }
 }
 
+// onrecieve will push the data to the dataset once it is recieved
 function onReceive(event) {
   window.myChart.config.data.datasets[event.index].data.push({
     x: event.timestamp,
@@ -208,6 +214,7 @@ function offData() {
   display_data = false;
 }
 
+// will convert the graph values to the CSV
 function convertToCSV() {
   const csvRows = [];
   const headers = ["Time,Voltage"];

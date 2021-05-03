@@ -1,3 +1,4 @@
+// Sets up the char.js chart that is called voltmeterChart
 var voltmeterChart = new Chart(document.getElementById("voltmeterChart"), {
     type: 'line',
     data: {
@@ -88,6 +89,7 @@ var voltmeterChart = new Chart(document.getElementById("voltmeterChart"), {
     }
 });
 
+// will start displaying data once the page is opened
 var display_data = true;
 
 // random function to generate data between 0 and 10 V
@@ -99,6 +101,7 @@ function getData() {
     }
 }
 
+// setBox will update the value of the textbox to read what the graph reads
 function setBox() {
     $("#volt").val(point + "V");
 }
