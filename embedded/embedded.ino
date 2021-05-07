@@ -53,18 +53,26 @@
 char wifi_name[] = "energia";
 char wifi_password[] = "launchpad";
 
-char oscilloscope[] = "{OSCILLOSCOPE.HTML}";
-char voltmeter[] = "{VOLTMETER.HTML}";
-char logic[] = "{LOGIC.HTML}";
-char waveform[] = "{WAVEFORM.HTML}";
-char power[] = "{POWER.HTML}";
-char style[] = "{STYLE.CSS}";
-uint8_t img[] = {LOGO.PNG}; 
+const PROGMEM char oscilloscope[] = "{OSCILLOSCOPE.HTML}";
+const PROGMEM char voltmeter[] = "{VOLTMETER.HTML}";
+const PROGMEM char logic[] = "{LOGIC.HTML}";
+const PROGMEM char waveform[] = "{WAVEFORM.HTML}";
+const PROGMEM char power[] = "{POWER.HTML}";
+const PROGMEM char style[] = "{STYLE.CSS}";
+
+// Compressed dependencies
+const PROGMEM uint8_t img[] = {LOGO.PNG};
+const PROGMEM uint8_t bootstrapCSS[] = {BOOTSTRAP.MIN.CSS};
+const PROGMEM uint8_t bootstrapJS[] = {BOOTSTRAP.MIN.JS};
+const PROGMEM uint8_t chartJS[] = {CHART.MIN.JS};
+const PROGMEM uint8_t streamingJS[] = {CHARTJS-PLUGIN-STREAMING.MIN.JS};
+const PROGMEM uint8_t jQueryJS[] = {JQUERY.SLIM.MIN.JS};
+const PROGMEM uint8_t momentJS[] = {MOMENT.MIN.JS};
+const PROGMEM uint8_t popperJS[] = {POPPER.MIN.JS};
 
 WiFiServer myServer(80);
 uint8_t oldCountClients = 0;
 uint8_t countClients = 0;
-
 
 // Add setup code
 void setup()
@@ -168,6 +176,7 @@ void loop()
                           // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
                           // and a content-type so the client knows what's coming, then a blank line:
                           myClient.println("HTTP/1.1 200 OK");
+                          myClient.println("Cache-Control: public, max-age=31536000");
                           myClient.println("Content-type:text/html");
                           myClient.println();
 
@@ -188,25 +197,53 @@ void loop()
                             // power supply
                             myClient.println(power);
                           }
-                        } else if (requestedFile == 6) {
+                        } else if (requestedFile == 6 || requestedFile == 8) {
                           // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
                           // and a content-type so the client knows what's coming, then a blank line:
                           myClient.println("HTTP/1.1 200 OK");
+                          myClient.println("Cache-Control: public, max-age=31536000");
                           myClient.println("Content-type:text/css");
-                          myClient.println();
 
                           // the content of the HTTP response follows the header:
-                          myClient.println(style);
+                          if (requestedFile == 6) {
+                            myClient.println();                            
+                            myClient.println(style);
+                          } else {
+                            myClient.println("Content-Encoding: gzip");                          
+                            myClient.println();
+                            myClient.write(bootstrapCSS, sizeof(bootstrapCSS));
+                          }
                         } else if (requestedFile == 7) {
                           myClient.println("HTTP/1.1 200 OK");
+                          myClient.println("Cache-Control: public, max-age=31536000");
                           myClient.println("Content-type:image/png");
+                          myClient.println("Content-Encoding: gzip");                          
                           myClient.println();
                           myClient.write(img, sizeof(img));
+                        } else if (requestedFile >= 9 && requestedFile <= 14) {
+                          myClient.println("HTTP/1.1 200 OK");
+                          myClient.println("Cache-Control: public, max-age=31536000");
+                          myClient.println("Content-type:text/javascript");
+                          myClient.println("Content-Encoding: gzip");                          
+                          myClient.println();
+                          if (requestedFile == 9) {
+                            myClient.write(bootstrapJS, sizeof(bootstrapJS));
+                          } else if (requestedFile == 10) {
+                            myClient.write(chartJS, sizeof(chartJS));
+                          } else if (requestedFile == 11) {
+                            myClient.write(streamingJS, sizeof(streamingJS));                            
+                          } else if (requestedFile == 12) {
+                            myClient.write(jQueryJS, sizeof(jQueryJS));
+                          } else if (requestedFile == 13) {
+                            myClient.write(momentJS, sizeof(momentJS));
+                          } else if (requestedFile == 14) {
+                            myClient.write(popperJS, sizeof(popperJS));
+                          }
                         } else {
                           myClient.println("HTTP/1.1 404 Not Found");
                           myClient.println("Content-type:text/html");
                           myClient.println();
-                          myClient.println("404 could not find resource");
+                          myClient.println("<h1>404 could not find resource</h1>");
                         }
                         
                         // The HTTP response ends with another blank line:
@@ -231,6 +268,20 @@ void loop()
                           requestedFile = 6;
                         } else if (text.startsWith("GET /images/logo.png")) {
                           requestedFile = 7;
+                        } else if (text.startsWith("GET /dependencies/bootstrap.min.css")) {
+                          requestedFile = 8;
+                        } else if (text.startsWith("GET /dependencies/bootstrap.min.js")) {
+                          requestedFile = 9;
+                        } else if (text.startsWith("GET /dependencies/chart.min.js")) {
+                          requestedFile = 10;
+                        } else if (text.startsWith("GET /dependencies/chartjs-plugin-streaming.min.js")) {
+                          requestedFile = 11;
+                        } else if (text.startsWith("GET /dependencies/jquery.slim.min.js")) {
+                          requestedFile = 12;
+                        } else if (text.startsWith("GET /dependencies/moment.min.js")) {
+                          requestedFile = 13;
+                        } else if (text.startsWith("GET /dependencies/popper.min.js")) {
+                          requestedFile = 14;
                         }
                         memset(buffer, 0, 150);
                         i = 0;

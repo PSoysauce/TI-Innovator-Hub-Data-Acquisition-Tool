@@ -1,45 +1,39 @@
 <!DOCTYPE HTML>
+
 <head>
     <meta charset="UTF-8">
     <title> TI Data Hub </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="/dependencies/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@latest/dist/chartjs-plugin-streaming.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="/dependencies/moment.min.js"></script>
+    <script src="/dependencies/chart.min.js"></script>
+    <script src="/dependencies/chartjs-plugin-streaming.min.js"></script>
+    <script src="/dependencies/jquery.slim.min.js"></script>
+    <script src="/dependencies/popper.min.js"></script>
+    <script src="/dependencies/bootstrap.min.js"></script>
 </head>
 <header>
     <section id="header">
         <div class="wrapper">
-           <nav>
-            <ul class="main-nav">
-                <li><a href="https://www.ti.com/" class="logo" ><img src="images/logo.png" alt="tilogo" class="img-responsive"></a></li>
-                <li class="nav"><a href="oscilloscope.html">Oscilloscope</a></li>
-                <li class="nav"><a href="voltmeter.html">Voltmeter</a></li>
-                <li class="nav"><a href="logic.html"class='active'>Logic Analyzer</a></li>
-                <li class="nav"><a href="waveform.html">Waveform Generator</a></li>
-                <li class="nav"><a href="power.html">Power Supply</a></li>
-              </ul>
-           </nav>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="https://www.ti.com/" class="logo"><img src="images/logo.png" alt="tilogo"
+                                class="img-responsive"></a></li>
+                    <li class="nav"><a href="oscilloscope.html">Oscilloscope</a></li>
+                    <li class="nav"><a href="voltmeter.html">Voltmeter</a></li>
+                    <li class="nav"><a href="logic.html" class='active'>Logic Analyzer</a></li>
+                    <li class="nav"><a href="waveform.html">Waveform Generator</a></li>
+                    <li class="nav"><a href="power.html">Power Supply</a></li>
+                </ul>
+            </nav>
         </div>
-      </section>
+    </section>
 </header>
+
 <body>
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-md-12"> 
+            <div class="col-md-12">
                 <div class="row h-100 main">
                     <div class="col-md-4 mt-2">
                         <div class="row mt-2">
@@ -53,13 +47,16 @@
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="input-group input-group-sm my-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Voltage Threshold</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Voltage
+                                                    Threshold</span>
                                             </div>
-                                            <input type="number" step="0.1" class="form-control" id="threshold" placeholder="0.5">
+                                            <input type="number" step="0.1" class="form-control" id="threshold"
+                                                placeholder="0.5">
                                         </div>
                                         <div class="input-group input-group-sm my-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Conditions</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger
+                                                    Conditions</span>
                                             </div>
                                             <select class="form-select" id="trigger">
                                                 <option selected> Auto Trigger </option>
@@ -68,15 +65,19 @@
                                         </div>
                                         <div class="input-group input-group-sm my-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger Pattern</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Trigger
+                                                    Pattern</span>
                                             </div>
-                                            <input type="number" step="1" class="form-control" id="pattern" placeholder="0">
+                                            <input type="number" step="1" class="form-control" id="pattern"
+                                                placeholder="0">
                                         </div>
                                         <div class="col-md-12 pb-3">
-                                            <button onClick="pauseAll()" id="pauseAll" class="btn-settings btn-border w-100">Start All Charts</button>
+                                            <button onClick="pauseAll()" id="pauseAll"
+                                                class="btn-settings btn-border w-100">Start All Charts</button>
                                         </div>
                                         <div class="col-md-12 pb-3">
-                                            <button onClick="exportCVS()" id="exportAll" class="btn-settings btn-border w-100">Export All Charts</button>
+                                            <button onClick="exportCVS()" id="exportAll"
+                                                class="btn-settings btn-border w-100">Export All Charts</button>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +91,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(0)" id="pause0" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(0)" id="pause0"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +106,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(1)" id="pause1" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(1)" id="pause1"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +121,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(2)" id="pause2" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(2)" id="pause2"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +136,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(3)" id="pause3" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(3)" id="pause3"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +151,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(4)" id="pause4" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(4)" id="pause4"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -160,7 +166,8 @@
                                 <div class="row m-0">
                                     <div class="col-md-12 text-white bg-dark-custom border border-secondary">
                                         <div class="col-md-12 py-2">
-                                            <button onClick="pauseButton(5)" id="pause5" class="btn-settings btn-border w-100 h-100">Start</button>
+                                            <button onClick="pauseButton(5)" id="pause5"
+                                                class="btn-settings btn-border w-100 h-100">Start</button>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +179,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <nav class="navbar w-100 navbar-expand-lg navbar-light bg-light p-0 m-0">
-                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                            aria-expanded="false" aria-label="Toggle navigation">
                                             <span class="navbar-toggler-icon"></span>
                                         </button>
                                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -180,22 +189,28 @@
                                                 <div class="col-md-12 text-center">
                                                     <div class="row p-0 m-0">
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(0)" id="channelToggle0" class="btn-settings btn-border w-100">1</button>
+                                                            <button onClick="hideChannel(0)" id="channelToggle0"
+                                                                class="btn-settings btn-border w-100">1</button>
                                                         </div>
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(1)" id="channelToggle1" class="btn-settings btn-border w-100">2</button>
+                                                            <button onClick="hideChannel(1)" id="channelToggle1"
+                                                                class="btn-settings btn-border w-100">2</button>
                                                         </div>
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(2)" id="channelToggle2" class="btn-settings btn-border w-100">3</button>
+                                                            <button onClick="hideChannel(2)" id="channelToggle2"
+                                                                class="btn-settings btn-border w-100">3</button>
                                                         </div>
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(3)" id="channelToggle3" class="btn-settings btn-border w-100">4</button>
+                                                            <button onClick="hideChannel(3)" id="channelToggle3"
+                                                                class="btn-settings btn-border w-100">4</button>
                                                         </div>
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(4)" id="channelToggle4" class="btn-settings btn-border w-100">5</button>
+                                                            <button onClick="hideChannel(4)" id="channelToggle4"
+                                                                class="btn-settings btn-border w-100">5</button>
                                                         </div>
                                                         <div class="col-md-2 p-0 border border-dark">
-                                                            <button onClick="hideChannel(5)" id="channelToggle5" class="btn-settings btn-border w-100">6</button>
+                                                            <button onClick="hideChannel(5)" id="channelToggle5"
+                                                                class="btn-settings btn-border w-100">6</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -206,32 +221,38 @@
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart0" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart0"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart1" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart1"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart2" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart2"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart3" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart3"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart4" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart4"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                             <div class="row p-0 m-0">
                                 <div class="col-md-12 p-0 m-0">
-                                    <canvas id="channelChart5" class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
+                                    <canvas id="channelChart5"
+                                        class="w-100 h-100 bg-dark-custom border border-secondary"></canvas>
                                 </div>
                             </div>
                         </div>

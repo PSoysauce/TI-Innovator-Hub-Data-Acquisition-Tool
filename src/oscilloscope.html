@@ -1,119 +1,130 @@
-    <!DOCTYPE HTML>
-    <head>
-        <meta charset="UTF-8">
-        <title> TI Data Hub </title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@latest/dist/chartjs-plugin-streaming.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    </head>
-    <header>
-        <section id="header">
-            <div class="wrapper">
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="UTF-8">
+    <title> TI Data Hub </title>
+    <link href="/dependencies/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="/dependencies/moment.min.js"></script>
+    <script src="/dependencies/chart.min.js"></script>
+    <script src="/dependencies/chartjs-plugin-streaming.min.js"></script>
+    <script src="/dependencies/jquery.slim.min.js"></script>
+    <script src="/dependencies/popper.min.js"></script>
+    <script src="/dependencies/bootstrap.min.js"></script>
+</head>
+<header>
+    <section id="header">
+        <div class="wrapper">
             <nav>
                 <ul class="main-nav">
-                <li><a href="https://www.ti.com/" class="logo" ><img src="images/logo.png" alt="tilogo" class="img-responsive"></a></li>
-                <li class="nav"><a href="oscilloscope.html"class='active'>Oscilloscope</a></li>
-                <li class="nav"><a href="voltmeter.html">Voltmeter</a></li>
-                <li class="nav"><a href="logic.html">Logic Analyzer</a></li>
-                <li class="nav"><a href="waveform.html">Waveform Generator</a></li>
-                <li class="nav"><a href="power.html">Power Supply</a></li>
+                    <li><a href="https://www.ti.com/" class="logo"><img src="images/logo.png" alt="tilogo"
+                                class="img-responsive"></a></li>
+                    <li class="nav"><a href="oscilloscope.html" class='active'>Oscilloscope</a></li>
+                    <li class="nav"><a href="voltmeter.html">Voltmeter</a></li>
+                    <li class="nav"><a href="logic.html">Logic Analyzer</a></li>
+                    <li class="nav"><a href="waveform.html">Waveform Generator</a></li>
+                    <li class="nav"><a href="power.html">Power Supply</a></li>
                 </ul>
             </nav>
-            </div>
-        </section>
-    </header>
-    <body>
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-md-12"> 
-                    <div class="row h-100 main">
-                        <div class="col-md-4 mt-2">
-                            <div class="row mt-2">
-                                <div class="col-md-12">
-                                    <div class="row m-0">
-                                        <div class="col-md-12 border border-secondary">
-                                            <h4 class="text-center"> Universal Settings </h1>
+        </div>
+    </section>
+</header>
+
+<body>
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-md-12">
+                <div class="row h-100 main">
+                    <div class="col-md-4 mt-2">
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="row m-0">
+                                    <div class="col-md-12 border border-secondary">
+                                        <h4 class="text-center"> Universal Settings </h1>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                        <div>
+                                            <div class="col-md-12 py-3">
+                                                <button type="button" class="btn-settings btn-border w-100"
+                                                    onclick="onData()">Start Oscilloscope</button>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="button" class="btn-settings btn-border w-100"
+                                                    onclick="offData()">Pause Oscilloscope</button>
+                                            </div>
+                                            <div class="col-md-12 py-3">
+                                                <button type="button" class="btn-settings btn-border w-100"
+                                                    id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row m-0">
-                                        <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                            <div>
-                                                <div class="col-md-12 py-3">
-                                                    <button type="button" class="btn-settings btn-border w-100" onclick="onData()">Start Oscilloscope</button>
+                                    <form id="settings-form">
+                                        <div class="row">
+                                            <div class="row mt-3 p-0 m-0">
+                                                <div class="col-md-12 border border-secondary">
+                                                    <h3 class="text-center"> Voltage Characteristics </h1>
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <button type="button" class="btn-settings btn-border w-100" onclick="offData()">Pause Oscilloscope</button>
-                                                </div>
-                                                <div class="col-md-12 py-3">
-                                                    <button type="button" class="btn-settings btn-border w-100" id="btnExportToCsv" onclick="convertToCSV()">Export Data</button>
+                                            </div>
+                                            <div class="row m-0 p-0 m-0">
+                                                <div
+                                                    class="col-md-12 text-white bg-dark-custom border border-secondary">
+                                                    <div class="input-group input-group-sm my-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="inputGroup-sizing-sm">Amplitude</span>
+                                                        </div>
+                                                        <input disabled type="text" id="amplitude-input"
+                                                            class="form-control" aria-label="Small"
+                                                            aria-describedby="amplitude-input" value="1">
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="inputGroup-sizing-sm">Maximum Voltage</span>
+                                                        </div>
+                                                        <input disabled type="text" id="max-voltage-input"
+                                                            class="form-control" aria-label="Small" value="0"
+                                                            aria-describedby="inputGroup-sizing-sm">
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="inputGroup-sizing-sm">Minimum Voltage</span>
+                                                        </div>
+                                                        <input disabled type="text" id="min-voltage-input"
+                                                            class="form-control" aria-label="Small" value="0"
+                                                            aria-describedby="inputGroup-sizing-sm">
+                                                    </div>
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"
+                                                                id="inputGroup-sizing-sm">Mean Voltage</span>
+                                                        </div>
+                                                        <input disabled type="text" id="mean-voltage-input" value="0"
+                                                            class="form-control" aria-label="Small"
+                                                            aria-describedby="inputGroup-sizing-sm">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <form id="settings-form">
-                                            <div class="row">
-                                                <div class="row mt-3 p-0 m-0">
-                                                    <div class="col-md-12 border border-secondary">
-                                                        <h3 class="text-center"> Voltage Characteristics </h1>
-                                                    </div>
-                                                </div>
-                                                <div class="row m-0 p-0 m-0">
-                                                    <div class="col-md-12 text-white bg-dark-custom border border-secondary">
-                                                        <div class="input-group input-group-sm my-3">
-                                                            <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Amplitude</span>
-                                                            </div>
-                                                            <input disabled type="text" id="amplitude-input" class="form-control" aria-label="Small" aria-describedby="amplitude-input" value="1">
-                                                        </div>
-                                                        <div class="input-group input-group-sm mb-3">
-                                                            <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Maximum Voltage</span>
-                                                            </div>
-                                                            <input disabled type="text" id="max-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
-                                                        </div>
-                                                        <div class="input-group input-group-sm mb-3">
-                                                            <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Minimum Voltage</span>
-                                                            </div>
-                                                            <input disabled type="text" id="min-voltage-input" class="form-control" aria-label="Small" value="0" aria-describedby="inputGroup-sizing-sm">
-                                                        </div>
-                                                        <div class="input-group input-group-sm mb-3">
-                                                            <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="inputGroup-sizing-sm">Mean Voltage</span>
-                                                            </div>
-                                                            <input disabled type="text" id="mean-voltage-input" value="0" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8 m-0 p-0 h-100 float-left border border-secondary">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <canvas id="oscilloscopeChart" class="w-100 bg-dark-custom border border border-secondary"></canvas>
-                                </div>
+                    </div>
+                    <div class="col-md-8 m-0 p-0 h-100 float-left border border-secondary">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <canvas id="oscilloscopeChart"
+                                    class="w-100 bg-dark-custom border border border-secondary"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="js/oscilloscope.js"></script>
-    </body>
+    </div>
+    <script src="js/oscilloscope.js"></script>
+</body>

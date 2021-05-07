@@ -28,9 +28,9 @@ Launchpad info:
 https://dev.ti.com/tirex/explore/node?devtools=MSP-EXP432P401R&node=AC5Wb-VBjXI4EELckTDYfQ__FUz-xrs__LATEST
 
 # minify.sh requirements
-html-minifier, terser, and clean-css-cli are used for minification. To install them use:
+html-minifier, terser, strip-comments-cli, and clean-css-cli are used for minification. To install them use:
 ```
-npm install html-minifier terser clean-css-cli -g
+npm install html-minifier terser clean-css-cli @prasadrajandran/strip-comments-cli -g
 ```
 
 # Things to do

@@ -1,23 +1,23 @@
 // FROM https://stackoverflow.com/a/995193/4352298
-(function($) {
-    $.fn.inputFilter = function(inputFilter) {
-    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
-        if (inputFilter(this.value)) {
-        this.oldValue = this.value;
-        this.oldSelectionStart = this.selectionStart;
-        this.oldSelectionEnd = this.selectionEnd;
-        } else if (this.hasOwnProperty("oldValue")) {
-        this.value = this.oldValue;
-        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-        } else {
-        this.value = "";
-        }
-    });
+(function ($) {
+    $.fn.inputFilter = function (inputFilter) {
+        return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function () {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                this.value = "";
+            }
+        });
     };
 }(jQuery));
 
-$("#settings-form input").inputFilter(function(value) {
-    return /^-{0,1}\d*\.{0,1}\d*$/.test(value);            
+$("#settings-form input[type='text']").inputFilter(function (value) {
+    return /^-{0,1}\d*\.{0,1}\d*$/.test(value);
 });
 
 var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
@@ -66,7 +66,7 @@ var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
                 ticks: {
                     fontColor: 'rgb(255, 255, 255)',
                     beginAtZero: true,
-                    callback: function(value, index, values) {
+                    callback: function (value, index, values) {
                         return value + ' V';
                     }
                 },
@@ -80,7 +80,7 @@ var chart = new Chart(document.getElementById("idealChart").getContext('2d'), {
                 ticks: {
                     fontColor: 'rgb(255, 255, 255)',
                     beginAtZero: true,
-                    callback: function(value, index, values) {
+                    callback: function (value, index, values) {
                         return value + 's';
                     }
                 },
@@ -114,7 +114,7 @@ function setIdealChart() {
     var sampleLength = dacFreq > freq ? dacFreq / freq : dacFreq;
     switch (type) {
         // Square
-        case 0: 
+        case 0:
             if (freq < 1) {
                 sampleLength = dacFreq / freq;
             }
@@ -167,7 +167,7 @@ function setIdealChart() {
     length = Math.floor(freq) == freq ? dacFreq : sampleLength;
     while (chart.data.datasets[0].data.length <= length) {
         for (i = 0; i < sampleLength; i++) {
-            chart.data.datasets[0].data.push({x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i])});
+            chart.data.datasets[0].data.push({ x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i]) });
             if (chart.data.datasets[0].data.length > length) {
                 break;
             }
@@ -177,7 +177,7 @@ function setIdealChart() {
     chart.update();
 }
 
-$("#settings-form :input").change(function() {
+$("#settings-form :input").change(function () {
     if (this.id.includes("range")) {
         $("#" + this.id.substring(0, this.id.indexOf("range")) + "input").val(this.value);
     } else if (this.id.includes("input")) {
@@ -188,7 +188,7 @@ $("#settings-form :input").change(function() {
     setIdealChart();
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     updateVars();
     setIdealChart();
 });
