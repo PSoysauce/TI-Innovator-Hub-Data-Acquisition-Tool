@@ -71,7 +71,7 @@ body, html {
 }
 
 .main-nav li.nav:hover {
-    border-bottom:  3px solid #c00;
+    transform: translateY(-1%);
 }
 
 .main-nav li:first-child {
