@@ -53,12 +53,12 @@
 char wifi_name[] = "energia";
 char wifi_password[] = "launchpad";
 
-const PROGMEM char oscilloscope[] = "{OSCILLOSCOPE.HTML}";
-const PROGMEM char voltmeter[] = "{VOLTMETER.HTML}";
-const PROGMEM char logic[] = "{LOGIC.HTML}";
-const PROGMEM char waveform[] = "{WAVEFORM.HTML}";
-const PROGMEM char power[] = "{POWER.HTML}";
-const PROGMEM char style[] = "{STYLE.CSS}";
+const PROGMEM uint8_t oscilloscope[] = {OSCILLOSCOPE.HTML};
+const PROGMEM uint8_t voltmeter[] = {VOLTMETER.HTML};
+const PROGMEM uint8_t logic[] = {LOGIC.HTML};
+const PROGMEM uint8_t waveform[] = {WAVEFORM.HTML};
+const PROGMEM uint8_t power[] = {POWER.HTML};
+const PROGMEM uint8_t style[] = {STYLE.CSS};
 
 // Compressed dependencies
 const PROGMEM uint8_t img[] = {LOGO.PNG};
@@ -178,24 +178,25 @@ void loop()
                           myClient.println("HTTP/1.1 200 OK");
                           myClient.println("Cache-Control: public, max-age=31536000");
                           myClient.println("Content-type:text/html");
+                          myClient.println("Content-Encoding: gzip");                          
                           myClient.println();
 
                           // the content of the HTTP response follows the header:
                           if (requestedFile == 1) {
                             // oscilloscope
-                            myClient.println(oscilloscope);
+                            myClient.write(oscilloscope, sizeof(oscilloscope));
                           } else if (requestedFile == 2) {
                             // voltmeter
-                            myClient.println(voltmeter);
+                            myClient.write(voltmeter, sizeof(voltmeter));
                           } else if (requestedFile == 3) {
                             // logic analyzer
-                            myClient.println(logic);
+                            myClient.write(logic, sizeof(logic));
                           } else if (requestedFile == 4) {
                             // waveform generator
-                            myClient.println(waveform);
+                            myClient.write(waveform, sizeof(waveform));
                           } else if (requestedFile == 5) {
                             // power supply
-                            myClient.println(power);
+                            myClient.write(power, sizeof(power));
                           }
                         } else if (requestedFile == 6 || requestedFile == 8) {
                           // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
@@ -203,14 +204,13 @@ void loop()
                           myClient.println("HTTP/1.1 200 OK");
                           myClient.println("Cache-Control: public, max-age=31536000");
                           myClient.println("Content-type:text/css");
+                          myClient.println("Content-Encoding: gzip");                          
+                          myClient.println();
 
                           // the content of the HTTP response follows the header:
                           if (requestedFile == 6) {
-                            myClient.println();                            
-                            myClient.println(style);
+                            myClient.write(style, sizeof(style));
                           } else {
-                            myClient.println("Content-Encoding: gzip");                          
-                            myClient.println();
                             myClient.write(bootstrapCSS, sizeof(bootstrapCSS));
                           }
                         } else if (requestedFile == 7) {

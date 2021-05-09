@@ -6,6 +6,8 @@ with open(sys.argv[3], "r") as f:
 
 with open(sys.argv[2], "r") as f:
     contents = f.read()
+    if (len(sys.argv) >= 5):
+        contents = f"<script>{contents}</script>"
     filled_contents = filled_contents.replace(sys.argv[1], contents)
 
 with open(sys.argv[3], "w") as f:
