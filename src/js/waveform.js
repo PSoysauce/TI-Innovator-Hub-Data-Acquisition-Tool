@@ -112,6 +112,8 @@ function trimNum(num) {
 function setIdealChart() {
     data = [];
     var sampleLength = dacFreq > freq ? dacFreq / freq : dacFreq;
+
+    // Generate 1 cycle of waveform
     switch (type) {
         // Square
         case 0:
@@ -162,11 +164,13 @@ function setIdealChart() {
             break;
     }
 
+    // Repeat cycle appropriate amount of times
     chart.data.datasets[0].data = [];
     cycleIndex = 0;
     length = Math.floor(freq) == freq ? dacFreq : sampleLength;
     while (chart.data.datasets[0].data.length <= length) {
         for (i = 0; i < sampleLength; i++) {
+            // Write data to graph, x = seconds, y = voltage.
             chart.data.datasets[0].data.push({ x: trimNum((cycleIndex * sampleLength + i) / dacFreq), y: trimNum(data[i]) });
             if (chart.data.datasets[0].data.length > length) {
                 break;

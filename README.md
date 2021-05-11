@@ -1,6 +1,21 @@
 # TI-Innovator-Hub-Data-Acquisition-Tool
 Work on building a basic instrumentation tool for portable signal measurements using the classroom ready TI-Innovator 
 
+# embed.sh and minify.sh info
+embed.sh first calls minify.sh, then compresses the minfied files, converts them into an array of integers, and embeds them into embedded/out/out.ino. Additionally embed.sh combines html and js files with the same name into one file. To specify where a file embedded by embed.sh should be placed in the source file, the filename should be put to all caps and surrounded in curly braces, ex. {EXAMPLE.TXT}.
+
+### System requirements / assumptions
+html-minifier, terser, strip-comments-cli, and clean-css-cli are used for minify.sh. To install them use:
+```
+npm install html-minifier terser clean-css-cli @prasadrajandran/strip-comments-cli -g
+```
+Both minify.sh and embed.sh should be run from the root of the repository.
+
+Additional assumptions:
+- Output file is created at embedded/out/out.ino from a copy of embedded/embedded.ino.
+- Original files are kept at src/, minified files at min/
+- gzip and python3 are installed.
+
 # Links
 Project Drive Folder for Weekly Reports
 
@@ -26,12 +41,6 @@ https://git-scm.com/book/en/v2
 
 Launchpad info:
 https://dev.ti.com/tirex/explore/node?devtools=MSP-EXP432P401R&node=AC5Wb-VBjXI4EELckTDYfQ__FUz-xrs__LATEST
-
-# minify.sh requirements
-html-minifier, terser, strip-comments-cli, and clean-css-cli are used for minification. To install them use:
-```
-npm install html-minifier terser clean-css-cli @prasadrajandran/strip-comments-cli -g
-```
 
 # Things to do
 Familiarize with GUI Composer Tool
