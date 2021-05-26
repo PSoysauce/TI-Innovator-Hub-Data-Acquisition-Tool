@@ -4,6 +4,9 @@ Work on building a basic instrumentation tool for portable signal measurements u
 # embed.sh and minify.sh info
 embed.sh first calls minify.sh, then compresses the minfied files, converts them into an array of integers, and embeds them into embedded/out/out.ino. Additionally embed.sh combines html and js files with the same name into one file. To specify where a file embedded by embed.sh should be placed in the source file, the filename should be put to all caps and surrounded in curly braces, ex. {EXAMPLE.TXT}.
 
+# Project Demo
+[![Demo Video](https://img.youtube.com/vi/DzkdXapN7w4/0.jpg)](https://www.youtube.com/watch?v=DzkdXapN7w4)
+
 ### System requirements / assumptions
 html-minifier, terser, strip-comments-cli, and clean-css-cli are used for minify.sh. To install them use:
 ```
